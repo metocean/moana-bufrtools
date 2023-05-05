@@ -18,7 +18,7 @@ To install the toolbox and additional requirements please use the following
 `python setup.py install`
 
 ## Example
-The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. However, this probably could be expanded to a broader audience if a configuration file is added instead. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and QC_flagged Good data (`QC_Flag=1`). The output would be an encoded bufr file in the same folder as the input file. The bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
+The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and QC_flagged Good data (`QC_Flag=1`). The output would be an encoded bufr file in the same folder as the input file. The bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
 
 ``` python
 from GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
@@ -48,7 +48,7 @@ Useful functions to support the encoding of mangōpare sensors
 - **[pres](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L38)** - conversion of depth (m) to pressure (Pa)
 
 ### GTS_encode
-Includes classes to encode the data into GTS/BUFR format. This codes are tailored for Mangōpare sensors format, changes might be needed if the format changes, but it should be straightforward. 
+Includes classes to encode the data into GTS/BUFR format. This codes are tailored for Mangōpare sensors format, changes might be needed if the netcdf format is different, but it should be straightforward. Probably could be fixed with a configuration file.
 
 There are three classes: 
 - **[GTS_encode_subfloat](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/GTS_encode.py#L21)**
