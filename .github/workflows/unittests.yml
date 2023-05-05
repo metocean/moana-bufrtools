@@ -13,9 +13,7 @@ jobs:
       - name: Build Docker Image
         env:
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
-          DATABASE_HOST: '127.0.0.1'
-          DATABASE_USER: root
-          DATABASE_PASS: rootpass
+          DATABASE_HOST: '136.156.180.50'
         run: docker build --build-arg GIT_TOKEN -t metocean/moana-bufrtools:encode-${GITHUB_REF#refs/*/} .
       - name: Run tests
         env:
