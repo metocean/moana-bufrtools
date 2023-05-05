@@ -14,15 +14,15 @@ from GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
 
 file = "../test/MOANA_0058_434_230228081912_qc.nc"
 centre_code = 69 # MetService Centre code from table Code Table C-11 69 -> Wellington (RSMC)
-GTS=GTS_encode_subfloat(file, centre_code, upcast=True) #upcast True if only upcast is needed
+GTS=GTS_encode_subfloat(file, centre_code, upcast=True, QC_Flag=1) #upcast True if only upcast is needed
 ```
 or 
 ```python
-GTS= GTS_encode_ship(file, centre_code, upcast=True)
+GTS= GTS_encode_ship(file, centre_code, upcast=True, QC_Flag=1)
 ```
 or 
 ```python
-GTS= GTS_encode_glider(file, centre_code, upcast=True)
+GTS= GTS_encode_glider(file, centre_code, upcast=True, QC_Flag=1)
 ```
 ```python
 GTS.run()
@@ -30,7 +30,11 @@ GTS.run()
 ---
 ## Encoding support for mangōpare sensors.
 
-This encoding uses the toolbox developed by eccodes and it is adapted to encode mangōpare sensors using the template for Temperature and salinity profile observed by profile floats (315003) and the template to represent data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles (315007).
+This encoding uses the toolbox developed by eccodes and it is adapted to encode mangōpare sensors' netcdf files. There is the option of using one of three [templates](https://community.wmo.int/en/activity-areas/wis/template-examples) (subsurface floats ([315003](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EZvB7yzzGMBOnVjh6ifiH1QB1ZpRu3YNjtuIszsa42tFig?e=Evfb5R)), ship deployment template ([315007](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EXh6sBgXywNAludHk-kEGNQB-ipxQJX6X8aYCNjF1Nlwzg?e=va2b1A)), glider template ([315012](https://github.com/wmo-im/BUFR4/issues/16), *work in process*)). 
+
+At the moment we provide the option to decide if only the upcast should be extracted, or the full deployment. `upcast=True` or `upcast=False`.
+
+Additionally, as default we are only using mangōpare sensors data that has a Quality Contro Flag of Good (`QC_Flag=1`), to use Good and Probably good data set `QC_Flag=[1,2]`. 
 
 ## Index
 ### utils
@@ -211,12 +215,6 @@ The Template includes the following items
 |042016 	|Sea water potential density referenced to sea surface 	|
 |008080 	|Qualifier for GTSPP quality flag 	26, sea water potential density at a level |
 |033050 	|Global GTSPP quality flag |
-
----
-
-### Notes 
-- Mangōpare sensor has the depth in meters - this is converted to dbars then to Pa.
-- Mangōpare provides the temperature in Celsius - this is converted to Kelvin.
 
 ---
 ## Licensing
