@@ -247,7 +247,7 @@ Please see LICENSE.md for the license under which this code can be shared.  Plea
 ## Attribution Statement
 Original code base by MetOcean Solutions, a Division of Meteorological Service of New Zealand Ltd, developed as part of the Moana Project. The Moana Project is funded by the New Zealand Ministry of Business, Innovation, and Employment (MBIE) Endeavour Fund.
 
-Contributors to the current version in include: MetOcean Solutions, Berring Data Collective
+Contributors to the current version in include: MetOcean Solutions
 
 The Mangōpare sensor and deck unit hardware were developed by Zebra-Tech, Ltd, Nelson, New Zealand as part of the Moana Project.  Sensors are available through https://www.zebra-tech.co.nz/
 
