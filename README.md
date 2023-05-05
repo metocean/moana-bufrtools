@@ -243,7 +243,7 @@ The Template includes the following items
 
 ---
 ## Licensing
-Please see LICENSE.md for the license under which this code can be shared.  Please consider contributing to the code under this repository whenever possible rather then forking or cloning into a new repository so all can benefit from collaborative work.  If you need to fork/clone into a new repository, please let us know so we can include any new developments as a community.
+Please see LICENSE for the license under which this code can be shared.  Please consider contributing to the code under this repository whenever possible rather then forking or cloning into a new repository so all can benefit from collaborative work.  If you need to fork/clone into a new repository, please let us know so we can include any new developments as a community.
 
 ---
 ## Attribution Statement
