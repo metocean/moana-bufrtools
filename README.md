@@ -8,7 +8,7 @@ This encoding uses the toolbox developed by eccodes and it is adapted to encode 
 
 At the moment we provide the option to decide if only the final upcast should be extracted, or the full deployment. `upcast=True` or `upcast=False`.
 
-Additionally, as default we are only using mangōpare sensors data that has a Quality Control Flag of Good (`QC_flag=1`), to use Good and Probably good data set `QC_flag=[1,2]`. To see more about mangōpare sensors quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
+Additionally, as default we are only using mangōpare sensors data that have passed all the Quality Control tests (`QC_flag=1`). However, data that failed a test but can probably be classified as good data can also be used `QC_flag=[1,2]`. To see more about mangōpare sensors quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
 
 ## Installation
 To install the toolbox and additional requirements please use the following
@@ -18,7 +18,7 @@ To install the toolbox and additional requirements please use the following
 `python setup.py install`
 
 ## Example
-The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and QC_flagged Good data (`QC_flag=1`). The output would be an encoded bufr file in the same folder as the input file. The bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
+The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and quality control data that passed all the tests (`QC_flag=1`). The output would be an encoded bufr file in the same folder and the same name as the input file. The output bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
 
 ``` python
 from GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
@@ -46,7 +46,7 @@ Useful functions to support the encoding of mangōpare sensors
 - **[extract_upcast](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L26)** - Extraction of upcast measurements
 - **[pres](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L38)** - conversion of depth (m) to pressure (Pa)
 
-Examples of and encoded file output. This csv files haven decoded again and [validated](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/)for each template:
+Examples of output file. The `.bufr` output file was decoded and [validated](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) for each template generating the following csv files:
 - **[subfloat (315003)](https://github.com/metocean/moana-bufrtools/blob/main/test/315003_MOANA_0058_434_230228081912_qc.csv)**
 - **[ship (315007)](https://github.com/metocean/moana-bufrtools/blob/main/test/315007_MOANA_0058_434_230228081912_qc.csv)**
 - **[glider (315012)](https://github.com/metocean/moana-bufrtools/blob/main/test/315012_MOANA_0058_434_230228081912_qc.csv)**
