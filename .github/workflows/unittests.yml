@@ -18,7 +18,7 @@ jobs:
       - name: Run tests
         env:
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
-        run: docker run --rm pytest /source/moana-bufrtools --cov metocean/moana-bufrtools:encode-${GITHUB_REF#refs/*/} 
+        run: docker run --rm metocean/moana-bufrtools:encode-${GITHUB_REF#refs/*/} && pytest /source/moana-bufrtools --cov
       - name: Docker push
         run: docker push metocean/moana-bufrtools:encode-${GITHUB_REF#refs/*/}
       - name: Docker logout
