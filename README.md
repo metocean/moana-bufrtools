@@ -58,15 +58,34 @@ The template includes the following items
 
 |315003 | Subsurface float Template|
 | :------------- | :------------- |
-|301011| Time |
-|005001| Latitude|
-|006001| Longitude|
-|008080| Qualifier for GTSPP Quality Flag|
-|033050| Global GTSPP Quality Flag|
-|007065| Water Pressure (Pa)|
-|008080| Qualifier for GTSPP Quality Flag|
-|033050| Global GTSPP Quality Flag|
-|022045| Oceanographic Water Temperature (K)|
+||**Identification** |
+|001087 | WMO Marine observing platform extended identifier|
+|001085 | Observing platform manufacturers model|
+|001086 | Observing platform manufacturers serial number|
+|002036 | Buoy type|
+|002148 | Data collection and/or location system|
+||**Float information** |
+|002149 | Type of data buoy|
+|022055 | Float cycle number|
+|022056 | Direction of profile|
+|022067 | Instrument type for water temperature profile measurement|
+|301011 | Date|
+|301012 | Time|
+|301021 | Latitude and longitude (high accuracy)|
+|008080 | Qualifier for quality class|
+|033050 | Global GTSPP quality class|
+||**Profile Measurements** |
+|109000 | Delayed replication of 9 descriptors|
+|031002 | Extended delayed descriptor replication factor|
+|007065 | Water pressure|
+|008080 | Qualifier for quality class|
+|033050 | Global GTSPP quality class|
+|022045 | Subsurface sea temperature|
+|008080 | Qualifier for quality class|
+|033050 | GTSPP quality class |
+|022064 | Salinity |
+|008080 | Qualifier for quality class |
+|033050 | GTSPP quality class|
 
 
 ### GTS_encode_ship
@@ -154,7 +173,7 @@ The Template includes the following items
 |315012 | Glider Template|
 | :------------- | :------------- |
 ||**Identification** |
-|301150 	|(WIGOS identifier) 	|
+|301150 	|WIGOS identifier* 	|
 |201129 	|Change data width 	Increase width of following elements by 1 bit|
 |001087 	|WMO marine observing platform extended identifier 	|
 |201000 	|Change data width 	Cancel increase in width|
@@ -165,9 +184,9 @@ The Template includes the following items
 |001086 	|Observing platform manufacturer's serial number | 	
 ||**Surface Pressure**|
 |008021 	|Time significance 	Set to 25, nominal reporting time|
-|301011 	|(Year, month, day) 	|
-|301013 	|(Hour, minute, second) |	
-|301021 	|(Latitude / longitude (high accuracy)) | 	
+|301011 	|Year, month, day 	|
+|301013 	|Hour, minute, second |	
+|301021 	|Latitude / longitude (high accuracy) | 	
 |011104 	|True heading of aircraft, ship or other mobile platform | 	
 |002169 	|Anemometer type 	Set to 2, wind observation through ambient noise (WOTAN)|
 |011002 	|Wind speed 	|
@@ -176,11 +195,11 @@ The Template includes the following items
 ||**Ocean Currents**|
 |022032 	|Speed of sea surface current 	|
 |022005 	|Direction of sea-surface current| 	
-|301011 	|(Year, month, day) 	|
-|301013 	|(Hour, minute, second) |	
+|301011 	|Year, month, day 	|
+|301013 	|Hour, minute, second |	
 |008021 	|Time significance 	Set to 2, time averaged |
 |004025 	|Time period or displacement 	Duration of dive |
-|301021 	|(Latitude / longitude (high accuracy)) 	|
+|301021 	|Latitude / longitude (high accuracy) 	|
 |022031 	|Speed of current 	|
 |022004 	|Direction of current| 	
 |008021 	|Time significance 	Set to missing / cancel previous value|
@@ -206,16 +225,17 @@ The Template includes the following items
 |022045 	|Sea/water temperature 	|
 |008080 	|Qualifier for GTSPP quality flag 	11, water temperature at a level |
 |033050 	|Global GTSPP quality flag 	|
-|022066 	|Water conductivity 	|
+|022066 	|Water conductivity* 	|
 |008080 	|Qualifier for GTSPP quality flag 	25, water conductivity at a level |
 |033050 	|Global GTSPP quality flag 	|
 |022064 	|Salinity 	|
 |008080 	|Qualifier for GTSPP quality flag 	12, salinity at a level |
 |033050 	|Global GTSPP quality flag 	|
-|042016 	|Sea water potential density referenced to sea surface 	|
+|042016 	|Sea water potential density referenced to sea surface* 	|
 |008080 	|Qualifier for GTSPP quality flag 	26, sea water potential density at a level |
 |033050 	|Global GTSPP quality flag |
 
+* These fields are not available for current tables, these are fields to be added with the glider template
 ---
 ## Licensing
 Please see LICENSE.md for the license under which this code can be shared.  Please consider contributing to the code under this repository whenever possible rather then forking or cloning into a new repository so all can benefit from collaborative work.  If you need to fork/clone into a new repository, please let us know so we can include any new developments as a community.
