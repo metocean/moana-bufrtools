@@ -8,7 +8,7 @@ This encoding uses the toolbox developed by eccodes and it is adapted to encode 
 
 At the moment we provide the option to decide if only the final upcast should be extracted, or the full deployment. `upcast=True` or `upcast=False`.
 
-Additionally, as default we are only using mangōpare sensors data that has a Quality Contro; Flag of Good (`QC_Flag=1`), to use Good and Probably good data set `QC_Flag=[1,2]`. 
+Additionally, as default we are only using mangōpare sensors data that has a Quality Control Flag of Good (`QC_Flag=1`), to use Good and Probably good data set `QC_Flag=[1,2]`. To see more about mangōpare sensors quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
 
 ## Installation
 To install the toolbox and additional requirements please use the following
