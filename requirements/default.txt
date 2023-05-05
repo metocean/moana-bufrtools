@@ -4,7 +4,7 @@ bottleneck
 pandas
 xarray
 dask
-eccodes
+eccodes==1.2.0
 eccodes-python
 matplotlib
 sortedcontainers
