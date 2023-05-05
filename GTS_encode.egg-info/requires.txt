@@ -1,0 +1,11 @@
+matplotlib
+python-dateutil
+sortedcontainers
+eccodes
+eccodes-python
+xarray
+dask
+netCDF4
+bottleneck
+numpy
+pandas

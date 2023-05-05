@@ -1,0 +1,463 @@
+TableGroupKey(tables_root_dir='/var/task/pybufrkit/tables', wmo_tables_sn=('0', '0_0', '27'), local_tables_sn=None)
+<<<<<< section 0 >>>>>>
+start_signature = 'BUFR'
+length = 604
+edition = 3
+<<<<<< section 1 >>>>>>
+section_length = 18
+master_table_number = 0
+originating_subcentre = 0
+originating_centre = 69
+update_sequence_number = 0
+is_section2_presents = True
+flag_bits = '0000000'
+data_category = 31
+data_local_subcategory = 1
+master_table_version = 28
+local_table_version = 0
+year = 23
+month = 2
+day = 28
+hour = 8
+minute = 14
+second = 0
+<<<<<< section 2 >>>>>>
+section_length = 4
+reserved_bits = '00000000'
+local_bits = ''
+<<<<<< section 3 >>>>>>
+section_length = 9
+reserved_bits = '00000000'
+n_subsets = 1
+is_observation = True
+is_compressed = False
+flag_bits = '000000'
+unexpanded_descriptors = [315007]
+<<<<<< section 4 >>>>>>
+section_length = 561
+reserved_bits = '00000000'
+###### subset 1 of 1 ######
+1 001011 SHIP OR MOBILE LAND STATION IDENTIFIER                              'NA\x00\x00\x00\x00\x00\x00\x00'
+2 001012 DIRECTION OF MOTION OF MOVING OBSERVING PLATFORM                    None
+3 001013 SPEED OF MOTION OF MOVING OBSERVING PLATFORM                        None
+4 001019 LONG STATION OR SITE NAME                                           '\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff'
+5 001103 IMO NUMBER. UNIQUE LLOYD'S REGISTER                                 None
+6 001087 WMO MARINE OBSERVING PLATFORM EXTENDED IDENTIFIER                   58
+7 001036 AGENCY IN CHARGE OF OPERATING THE OBSERVING PLATFORM                None
+8 001115 IDENTIFIER OF THE CRUISE OR MISSION UNDER WHICH THE DATA WERE COLLE 'msn58du5107\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+9 001080 SHIP LINE NUMBER ACCORDING TO SOOP                                  '\xff\xff\xff\xff'
+10 005036 SHIP TRANSECT NUMBER ACCORDING TO SOOP                              None
+11 004001 YEAR                                                                2023
+12 004002 MONTH                                                               2
+13 004003 DAY                                                                 28
+14 004004 HOUR                                                                8
+15 004005 MINUTE                                                              18
+16 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+17 006001 LONGITUDE (HIGH ACCURACY)                                           175.33161
+18 001079 UNIQUE IDENTIFIER FOR THE PROFILE                                   '23022808'
+19 001023 OBSERVATION SEQUENCE NUMBER                                         None
+20 022063 TOTAL WATER DEPTH                                                   31
+21 031000 SHORT DELAYED DESCRIPTOR REPLICATION FACTOR                         1
+22 010004 PRESSURE                                                            None
+23 010051 PRESSURE REDUCED TO MEAN SEA LEVEL                                  None
+24 010061 3-HOUR PRESSURE CHANGE                                              None
+25 010063 CHARACTERISTIC OF PRESSURE TENDENCY                                 None
+26 031000 SHORT DELAYED DESCRIPTOR REPLICATION FACTOR                         1
+27 022001 DIRECTION OF WAVES                                                  None
+28 022011 PERIOD OF WAVES                                                     None
+29 022021 HEIGHT OF WAVES                                                     None
+30 031000 SHORT DELAYED DESCRIPTOR REPLICATION FACTOR                         1
+31 007032 HEIGHT OF SENSOR ABOVE LOCAL GROUND (OR DECK OF MARINE PLATFORM)    None
+32 007033 HEIGHT OF SENSOR ABOVE WATER SURFACE                                None
+33 012101 TEMPERATURE/AIR TEMPERATURE                                         None
+34 002039 METHOD OF WET-BULB TEMPERATURE MEASUREMENT                          None
+35 012102 WET-BULB TEMPERATURE                                                None
+36 012103 DEWPOINT TEMPERATURE                                                None
+37 013003 RELATIVE HUMIDITY                                                   None
+38 031000 SHORT DELAYED DESCRIPTOR REPLICATION FACTOR                         1
+39 007032 HEIGHT OF SENSOR ABOVE LOCAL GROUND (OR DECK OF MARINE PLATFORM)    None
+40 007033 HEIGHT OF SENSOR ABOVE WATER SURFACE                                None
+41 002002 TYPE OF INSTRUMENTATION FOR WIND MEASUREMENT                        None
+42 008021 TIME SIGNIFICANCE                                                   None
+43 004025 TIME PERIOD OR DISPLACEMENT                                         None
+44 011001 WIND DIRECTION                                                      None
+45 011002 WIND SPEED                                                          None
+46 008021 TIME SIGNIFICANCE                                                   None
+47 004025 TIME PERIOD OR DISPLACEMENT                                         None
+48 011043 MAXIMUM WIND GUST DIRECTION                                         None
+49 011041 MAXIMUM WIND GUST SPEED                                             None
+50 004025 TIME PERIOD OR DISPLACEMENT                                         None
+51 011043 MAXIMUM WIND GUST DIRECTION                                         None
+52 011041 MAXIMUM WIND GUST SPEED                                             None
+53 022067 INSTRUMENT TYPE FOR WATER TEMPERATURE/SALINITY PROFILE MEASUREMENT  902
+54 002171 INSTRUMENT SERIAL NUMBER FOR WATER TEMPERATURE PROFILE MEASUREMENT  '58\x00\x00\x00\x00\x00\x00'
+55 002038 METHOD OF WATER TEMPERATURE AND/OR SALINITY MEASUREMENT             None
+56 007063 DEPTH BELOW SEA/WATER SURFACE (CM)                                  3116.77
+57 022045 SEA/WATER TEMPERATURE                                               293.493
+58 002033 METHOD OF SALINITY/DEPTH MEASUREMENT                                None
+59 007063 DEPTH BELOW SEA/WATER SURFACE (CM)                                  None
+60 022064 SALINITY                                                            None
+61 002031 DURATION AND TIME OF CURRENT MEASUREMENT                            None
+62 003010 METHOD OF SEA/WATER CURRENT MEASUREMENT                             None
+63 002040 METHOD OF REMOVING VELOCITY AND MOTION OF PLATFORM FROM CURRENT     None
+64 022005 DIRECTION OF SEA-SURFACE CURRENT                                    None
+65 022032 SPEED OF SEA-SURFACE CURRENT                                        None
+66 002171 INSTRUMENT SERIAL NUMBER FOR WATER TEMPERATURE PROFILE MEASUREMENT  '\x00\x00\x00\x00\x00\x00\x00\x00'
+67 022067 INSTRUMENT TYPE FOR WATER TEMPERATURE/SALINITY PROFILE MEASUREMENT  None
+68 002038 METHOD OF WATER TEMPERATURE AND/OR SALINITY MEASUREMENT             14
+69 022067 INSTRUMENT TYPE FOR WATER TEMPERATURE/SALINITY PROFILE MEASUREMENT  902
+70 022068 WATER TEMPERATURE PROFILE RECORDER TYPES                            99
+71 002171 INSTRUMENT SERIAL NUMBER FOR WATER TEMPERATURE PROFILE MEASUREMENT  '58\x00\x00\x00\x00\x00\x00'
+72 002033 METHOD OF SALINITY/DEPTH MEASUREMENT                                1
+73 002032 INDICATOR FOR DIGITIZATION                                          0
+74 022056 DIRECTION OF PROFILE                                                0
+75 003011 METHOD OF DEPTH CALCULATION                                         1
+76 031002 EXTENDED DELAYED DESCRIPTOR REPLICATION FACTOR                      26
+77 007062 DEPTH BELOW SEA/WATER SURFACE                                       31.2
+78 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+79 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+80 007065 WATER PRESSURE                                                      314000.0
+81 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+82 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+83 022043 SEA/WATER TEMPERATURE                                               293.49
+84 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+85 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+86 022064 SALINITY                                                            None
+87 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+88 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+89 007062 DEPTH BELOW SEA/WATER SURFACE                                       30.2
+90 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+91 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+92 007065 WATER PRESSURE                                                      None
+93 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+94 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+95 022043 SEA/WATER TEMPERATURE                                               293.52
+96 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+97 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+98 022064 SALINITY                                                            None
+99 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+100 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+101 007062 DEPTH BELOW SEA/WATER SURFACE                                       29.0
+102 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+103 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+104 007065 WATER PRESSURE                                                      292000.0
+105 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+106 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+107 022043 SEA/WATER TEMPERATURE                                               293.56
+108 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+109 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+110 022064 SALINITY                                                            None
+111 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+112 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+113 007062 DEPTH BELOW SEA/WATER SURFACE                                       27.9
+114 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+115 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+116 007065 WATER PRESSURE                                                      281000.0
+117 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+118 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+119 022043 SEA/WATER TEMPERATURE                                               293.59
+120 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+121 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+122 022064 SALINITY                                                            None
+123 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+124 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+125 007062 DEPTH BELOW SEA/WATER SURFACE                                       26.8
+126 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+127 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+128 007065 WATER PRESSURE                                                      270000.0
+129 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+130 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+131 022043 SEA/WATER TEMPERATURE                                               293.6
+132 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+133 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+134 022064 SALINITY                                                            None
+135 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+136 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+137 007062 DEPTH BELOW SEA/WATER SURFACE                                       25.7
+138 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+139 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+140 007065 WATER PRESSURE                                                      259000.0
+141 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+142 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+143 022043 SEA/WATER TEMPERATURE                                               293.61
+144 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+145 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+146 022064 SALINITY                                                            None
+147 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+148 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+149 007062 DEPTH BELOW SEA/WATER SURFACE                                       24.7
+150 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+151 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+152 007065 WATER PRESSURE                                                      249000.0
+153 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+154 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+155 022043 SEA/WATER TEMPERATURE                                               293.63
+156 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+157 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+158 022064 SALINITY                                                            None
+159 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+160 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+161 007062 DEPTH BELOW SEA/WATER SURFACE                                       23.5
+162 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+163 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+164 007065 WATER PRESSURE                                                      237000.0
+165 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+166 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+167 022043 SEA/WATER TEMPERATURE                                               293.68
+168 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+169 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+170 022064 SALINITY                                                            None
+171 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+172 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+173 007062 DEPTH BELOW SEA/WATER SURFACE                                       22.2
+174 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+175 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+176 007065 WATER PRESSURE                                                      224000.0
+177 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+178 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+179 022043 SEA/WATER TEMPERATURE                                               293.77
+180 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+181 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+182 022064 SALINITY                                                            None
+183 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+184 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+185 007062 DEPTH BELOW SEA/WATER SURFACE                                       20.9
+186 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+187 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+188 007065 WATER PRESSURE                                                      211000.0
+189 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+190 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+191 022043 SEA/WATER TEMPERATURE                                               293.8
+192 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+193 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+194 022064 SALINITY                                                            None
+195 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+196 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+197 007062 DEPTH BELOW SEA/WATER SURFACE                                       19.9
+198 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+199 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+200 007065 WATER PRESSURE                                                      200000.0
+201 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+202 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+203 022043 SEA/WATER TEMPERATURE                                               293.89
+204 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+205 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+206 022064 SALINITY                                                            None
+207 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+208 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+209 007062 DEPTH BELOW SEA/WATER SURFACE                                       18.9
+210 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+211 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+212 007065 WATER PRESSURE                                                      190000.0
+213 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+214 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+215 022043 SEA/WATER TEMPERATURE                                               293.97
+216 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+217 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+218 022064 SALINITY                                                            None
+219 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+220 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+221 007062 DEPTH BELOW SEA/WATER SURFACE                                       17.7
+222 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+223 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+224 007065 WATER PRESSURE                                                      178000.0
+225 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+226 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+227 022043 SEA/WATER TEMPERATURE                                               294.0
+228 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+229 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+230 022064 SALINITY                                                            None
+231 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+232 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+233 007062 DEPTH BELOW SEA/WATER SURFACE                                       16.6
+234 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+235 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+236 007065 WATER PRESSURE                                                      167000.0
+237 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+238 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+239 022043 SEA/WATER TEMPERATURE                                               294.02
+240 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+241 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+242 022064 SALINITY                                                            None
+243 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+244 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+245 007062 DEPTH BELOW SEA/WATER SURFACE                                       15.4
+246 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+247 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+248 007065 WATER PRESSURE                                                      155000.0
+249 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+250 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+251 022043 SEA/WATER TEMPERATURE                                               294.06
+252 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+253 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+254 022064 SALINITY                                                            None
+255 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+256 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+257 007062 DEPTH BELOW SEA/WATER SURFACE                                       14.3
+258 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+259 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+260 007065 WATER PRESSURE                                                      144000.0
+261 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+262 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+263 022043 SEA/WATER TEMPERATURE                                               294.1
+264 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+265 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+266 022064 SALINITY                                                            None
+267 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+268 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+269 007062 DEPTH BELOW SEA/WATER SURFACE                                       13.2
+270 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+271 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+272 007065 WATER PRESSURE                                                      133000.0
+273 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+274 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+275 022043 SEA/WATER TEMPERATURE                                               294.11
+276 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+277 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+278 022064 SALINITY                                                            None
+279 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+280 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+281 007062 DEPTH BELOW SEA/WATER SURFACE                                       12.0
+282 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+283 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+284 007065 WATER PRESSURE                                                      121000.0
+285 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+286 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+287 022043 SEA/WATER TEMPERATURE                                               294.12
+288 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+289 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+290 022064 SALINITY                                                            None
+291 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+292 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+293 007062 DEPTH BELOW SEA/WATER SURFACE                                       11.0
+294 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+295 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+296 007065 WATER PRESSURE                                                      111000.0
+297 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+298 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+299 022043 SEA/WATER TEMPERATURE                                               294.12
+300 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+301 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+302 022064 SALINITY                                                            None
+303 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+304 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+305 007062 DEPTH BELOW SEA/WATER SURFACE                                       9.9
+306 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+307 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+308 007065 WATER PRESSURE                                                      100000.0
+309 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+310 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+311 022043 SEA/WATER TEMPERATURE                                               294.13
+312 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+313 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+314 022064 SALINITY                                                            None
+315 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+316 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+317 007062 DEPTH BELOW SEA/WATER SURFACE                                       8.9
+318 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+319 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+320 007065 WATER PRESSURE                                                      90000.0
+321 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+322 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+323 022043 SEA/WATER TEMPERATURE                                               294.13
+324 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+325 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+326 022064 SALINITY                                                            None
+327 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+328 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+329 007062 DEPTH BELOW SEA/WATER SURFACE                                       7.9
+330 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+331 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+332 007065 WATER PRESSURE                                                      80000.0
+333 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+334 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+335 022043 SEA/WATER TEMPERATURE                                               294.13
+336 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+337 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+338 022064 SALINITY                                                            None
+339 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+340 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+341 007062 DEPTH BELOW SEA/WATER SURFACE                                       6.8
+342 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+343 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+344 007065 WATER PRESSURE                                                      69000.0
+345 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+346 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+347 022043 SEA/WATER TEMPERATURE                                               294.13
+348 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+349 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+350 022064 SALINITY                                                            None
+351 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+352 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+353 007062 DEPTH BELOW SEA/WATER SURFACE                                       5.7
+354 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+355 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+356 007065 WATER PRESSURE                                                      57000.0
+357 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+358 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+359 022043 SEA/WATER TEMPERATURE                                               294.13
+360 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+361 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+362 022064 SALINITY                                                            None
+363 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+364 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+365 007062 DEPTH BELOW SEA/WATER SURFACE                                       4.5
+366 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+367 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+368 007065 WATER PRESSURE                                                      45000.0
+369 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+370 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+371 022043 SEA/WATER TEMPERATURE                                               294.13
+372 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+373 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+374 022064 SALINITY                                                            None
+375 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+376 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+377 007062 DEPTH BELOW SEA/WATER SURFACE                                       3.2
+378 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+379 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+380 007065 WATER PRESSURE                                                      32000.0
+381 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+382 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+383 022043 SEA/WATER TEMPERATURE                                               294.22
+384 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+385 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+386 022064 SALINITY                                                            None
+387 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+388 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+389 031000 SHORT DELAYED DESCRIPTOR REPLICATION FACTOR                         1
+390 002032 INDICATOR FOR DIGITIZATION                                          None
+391 003010 METHOD OF SEA/WATER CURRENT MEASUREMENT                             None
+392 002031 DURATION AND TIME OF CURRENT MEASUREMENT                            None
+393 002040 METHOD OF REMOVING VELOCITY AND MOTION OF PLATFORM FROM CURRENT     None
+394 022056 DIRECTION OF PROFILE                                                None
+395 003011 METHOD OF DEPTH CALCULATION                                         None
+396 031002 EXTENDED DELAYED DESCRIPTOR REPLICATION FACTOR                      1
+397 007062 DEPTH BELOW SEA/WATER SURFACE                                       None
+398 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+399 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+400 007065 WATER PRESSURE                                                      None
+401 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+402 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+403 022031 SPEED OF CURRENT                                                    None
+404 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+405 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+406 022004 DIRECTION OF CURRENT                                                None
+407 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+408 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+409 031000 SHORT DELAYED DESCRIPTOR REPLICATION FACTOR                         1
+410 002032 INDICATOR FOR DIGITIZATION                                          None
+411 003012 INSTRUMENT TYPE/SENSOR FOR DISSOLVED OXYGEN MEASUREMENT             None
+412 003011 METHOD OF DEPTH CALCULATION                                         None
+413 031002 EXTENDED DELAYED DESCRIPTOR REPLICATION FACTOR                      1
+414 007062 DEPTH BELOW SEA/WATER SURFACE                                       None
+415 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+416 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+417 007065 WATER PRESSURE                                                      None
+418 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+419 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+420 022188 DISSOLVED OXYGEN                                                    None
+421 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+422 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+<<<<<< section 5 >>>>>>
+stop_signature = '7777'

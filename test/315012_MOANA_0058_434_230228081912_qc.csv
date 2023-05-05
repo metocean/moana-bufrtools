@@ -1,0 +1,731 @@
+TableGroupKey(tables_root_dir='/var/task/pybufrkit/tables', wmo_tables_sn=('0', '0_0', '27'), local_tables_sn=None)
+<<<<<< section 0 >>>>>>
+start_signature = 'BUFR'
+length = 1092
+edition = 3
+<<<<<< section 1 >>>>>>
+section_length = 18
+master_table_number = 0
+originating_subcentre = 0
+originating_centre = 69
+update_sequence_number = 0
+is_section2_presents = True
+flag_bits = '0000000'
+data_category = 31
+data_local_subcategory = 1
+master_table_version = 28
+local_table_version = 0
+year = 23
+month = 2
+day = 28
+hour = 8
+minute = 14
+second = 0
+<<<<<< section 2 >>>>>>
+section_length = 4
+reserved_bits = '00000000'
+local_bits = ''
+<<<<<< section 3 >>>>>>
+section_length = 115
+reserved_bits = '00000000'
+n_subsets = 1
+is_observation = True
+is_compressed = False
+flag_bits = '000000'
+unexpanded_descriptors = [201129, 1087, 201000, 1019, 1036, 2148, 1085, 1086, 8021, 301011, 301013, 301021, 11104, 2169, 11002, 11001, 2169, 22032, 22005, 301011, 301013, 8021, 4025, 301021, 22031, 22004, 8021, 5068, 1079, 123000, 31001, 22056, 120000, 31002, 301011, 301013, 301021, 8080, 33050, 7062, 8080, 33050, 22065, 8080, 33050, 22045, 8080, 33050, 22066, 8080, 33050, 22064, 8080, 33050]
+<<<<<< section 4 >>>>>>
+section_length = 943
+reserved_bits = '00000000'
+###### subset 1 of 1 ######
+1 001087 WMO MARINE OBSERVING PLATFORM EXTENDED IDENTIFIER                   None
+2 001019 LONG STATION OR SITE NAME                                           '\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff'
+3 001036 AGENCY IN CHARGE OF OPERATING THE OBSERVING PLATFORM                None
+4 002148 DATA COLLECTION AND/OR LOCATION SYSTEM                              None
+5 001085 OBSERVING PLATFORM MANUFACTURER'S MODEL                             'Mangopare\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+6 001086 OBSERVING PLATFORM MANUFACTURER'S SERIAL NUMBER                     '5107\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+7 008021 TIME SIGNIFICANCE                                                   25
+8 004001 YEAR                                                                2023
+9 004002 MONTH                                                               2
+10 004003 DAY                                                                 28
+11 004004 HOUR                                                                8
+12 004005 MINUTE                                                              18
+13 004006 SECOND                                                              None
+14 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+15 006001 LONGITUDE (HIGH ACCURACY)                                           175.33161
+16 011104 TRUE HEADING OF AIRCRAFT, SHIP OR OTHER MOBILE PLATFORM             None
+17 002169 ANEMOMETER TYPE                                                     None
+18 011002 WIND SPEED                                                          None
+19 011001 WIND DIRECTION                                                      None
+20 002169 ANEMOMETER TYPE                                                     None
+21 022032 SPEED OF SEA-SURFACE CURRENT                                        None
+22 022005 DIRECTION OF SEA-SURFACE CURRENT                                    None
+23 004001 YEAR                                                                2023
+24 004002 MONTH                                                               2
+25 004003 DAY                                                                 28
+26 004004 HOUR                                                                8
+27 004005 MINUTE                                                              18
+28 004006 SECOND                                                              None
+29 008021 TIME SIGNIFICANCE                                                   2
+30 004025 TIME PERIOD OR DISPLACEMENT                                         50
+31 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+32 006001 LONGITUDE (HIGH ACCURACY)                                           175.33161
+33 022031 SPEED OF CURRENT                                                    None
+34 022004 DIRECTION OF CURRENT                                                None
+35 008021 TIME SIGNIFICANCE                                                   None
+36 005068 PROFILE NUMBER                                                      None
+37 001079 UNIQUE IDENTIFIER FOR THE PROFILE                                   '23022808'
+38 031001 DELAYED DESCRIPTOR REPLICATION FACTOR                               1
+39 022056 DIRECTION OF PROFILE                                                0
+40 031002 EXTENDED DELAYED DESCRIPTOR REPLICATION FACTOR                      26
+41 004001 YEAR                                                                2023
+42 004002 MONTH                                                               2
+43 004003 DAY                                                                 28
+44 004004 HOUR                                                                8
+45 004005 MINUTE                                                              14
+46 004006 SECOND                                                              None
+47 005001 LATITUDE (HIGH ACCURACY)                                            -36.16467
+48 006001 LONGITUDE (HIGH ACCURACY)                                           175.33163
+49 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+50 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+51 007062 DEPTH BELOW SEA/WATER SURFACE                                       31.2
+52 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+53 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+54 022065 WATER PRESSURE                                                      314000.0
+55 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+56 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+57 022045 SEA/WATER TEMPERATURE                                               293.493
+58 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+59 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+60 022066 WATER CONDUCTIVITY                                                  None
+61 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+62 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+63 022064 SALINITY                                                            None
+64 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+65 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+66 004001 YEAR                                                                2023
+67 004002 MONTH                                                               2
+68 004003 DAY                                                                 28
+69 004004 HOUR                                                                8
+70 004005 MINUTE                                                              15
+71 004006 SECOND                                                              None
+72 005001 LATITUDE (HIGH ACCURACY)                                            -36.16471
+73 006001 LONGITUDE (HIGH ACCURACY)                                           175.33161
+74 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+75 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+76 007062 DEPTH BELOW SEA/WATER SURFACE                                       30.2
+77 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+78 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+79 022065 WATER PRESSURE                                                      304000.0
+80 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+81 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+82 022045 SEA/WATER TEMPERATURE                                               293.519
+83 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+84 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+85 022066 WATER CONDUCTIVITY                                                  None
+86 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+87 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+88 022064 SALINITY                                                            None
+89 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+90 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+91 004001 YEAR                                                                2023
+92 004002 MONTH                                                               2
+93 004003 DAY                                                                 28
+94 004004 HOUR                                                                8
+95 004005 MINUTE                                                              15
+96 004006 SECOND                                                              None
+97 005001 LATITUDE (HIGH ACCURACY)                                            -36.16469
+98 006001 LONGITUDE (HIGH ACCURACY)                                           175.33159
+99 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+100 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+101 007062 DEPTH BELOW SEA/WATER SURFACE                                       29.0
+102 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+103 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+104 022065 WATER PRESSURE                                                      292000.0
+105 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+106 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+107 022045 SEA/WATER TEMPERATURE                                               293.557
+108 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+109 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+110 022066 WATER CONDUCTIVITY                                                  None
+111 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+112 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+113 022064 SALINITY                                                            None
+114 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+115 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+116 004001 YEAR                                                                2023
+117 004002 MONTH                                                               2
+118 004003 DAY                                                                 28
+119 004004 HOUR                                                                8
+120 004005 MINUTE                                                              16
+121 004006 SECOND                                                              None
+122 005001 LATITUDE (HIGH ACCURACY)                                            -36.16469
+123 006001 LONGITUDE (HIGH ACCURACY)                                           175.33159
+124 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+125 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+126 007062 DEPTH BELOW SEA/WATER SURFACE                                       27.9
+127 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+128 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+129 022065 WATER PRESSURE                                                      281000.0
+130 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+131 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+132 022045 SEA/WATER TEMPERATURE                                               293.592
+133 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+134 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+135 022066 WATER CONDUCTIVITY                                                  None
+136 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+137 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+138 022064 SALINITY                                                            None
+139 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+140 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+141 004001 YEAR                                                                2023
+142 004002 MONTH                                                               2
+143 004003 DAY                                                                 28
+144 004004 HOUR                                                                8
+145 004005 MINUTE                                                              16
+146 004006 SECOND                                                              None
+147 005001 LATITUDE (HIGH ACCURACY)                                            -36.16468
+148 006001 LONGITUDE (HIGH ACCURACY)                                           175.33162
+149 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+150 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+151 007062 DEPTH BELOW SEA/WATER SURFACE                                       26.8
+152 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+153 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+154 022065 WATER PRESSURE                                                      270000.0
+155 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+156 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+157 022045 SEA/WATER TEMPERATURE                                               293.605
+158 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+159 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+160 022066 WATER CONDUCTIVITY                                                  None
+161 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+162 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+163 022064 SALINITY                                                            None
+164 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+165 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+166 004001 YEAR                                                                2023
+167 004002 MONTH                                                               2
+168 004003 DAY                                                                 28
+169 004004 HOUR                                                                8
+170 004005 MINUTE                                                              16
+171 004006 SECOND                                                              None
+172 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+173 006001 LONGITUDE (HIGH ACCURACY)                                           175.33158
+174 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+175 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+176 007062 DEPTH BELOW SEA/WATER SURFACE                                       25.7
+177 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+178 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+179 022065 WATER PRESSURE                                                      259000.0
+180 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+181 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+182 022045 SEA/WATER TEMPERATURE                                               293.614
+183 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+184 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+185 022066 WATER CONDUCTIVITY                                                  None
+186 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+187 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+188 022064 SALINITY                                                            None
+189 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+190 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+191 004001 YEAR                                                                2023
+192 004002 MONTH                                                               2
+193 004003 DAY                                                                 28
+194 004004 HOUR                                                                8
+195 004005 MINUTE                                                              16
+196 004006 SECOND                                                              None
+197 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+198 006001 LONGITUDE (HIGH ACCURACY)                                           175.33158
+199 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+200 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+201 007062 DEPTH BELOW SEA/WATER SURFACE                                       24.7
+202 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+203 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+204 022065 WATER PRESSURE                                                      249000.0
+205 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+206 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+207 022045 SEA/WATER TEMPERATURE                                               293.634
+208 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+209 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+210 022066 WATER CONDUCTIVITY                                                  None
+211 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+212 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+213 022064 SALINITY                                                            None
+214 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+215 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+216 004001 YEAR                                                                2023
+217 004002 MONTH                                                               2
+218 004003 DAY                                                                 28
+219 004004 HOUR                                                                8
+220 004005 MINUTE                                                              16
+221 004006 SECOND                                                              None
+222 005001 LATITUDE (HIGH ACCURACY)                                            -36.16474
+223 006001 LONGITUDE (HIGH ACCURACY)                                           175.33156
+224 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+225 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+226 007062 DEPTH BELOW SEA/WATER SURFACE                                       23.5
+227 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+228 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+229 022065 WATER PRESSURE                                                      237000.0
+230 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+231 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+232 022045 SEA/WATER TEMPERATURE                                               293.679
+233 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+234 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+235 022066 WATER CONDUCTIVITY                                                  None
+236 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+237 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+238 022064 SALINITY                                                            None
+239 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+240 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+241 004001 YEAR                                                                2023
+242 004002 MONTH                                                               2
+243 004003 DAY                                                                 28
+244 004004 HOUR                                                                8
+245 004005 MINUTE                                                              17
+246 004006 SECOND                                                              None
+247 005001 LATITUDE (HIGH ACCURACY)                                            -36.16474
+248 006001 LONGITUDE (HIGH ACCURACY)                                           175.33156
+249 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+250 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+251 007062 DEPTH BELOW SEA/WATER SURFACE                                       22.2
+252 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+253 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+254 022065 WATER PRESSURE                                                      224000.0
+255 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+256 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+257 022045 SEA/WATER TEMPERATURE                                               293.774
+258 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+259 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+260 022066 WATER CONDUCTIVITY                                                  None
+261 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+262 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+263 022064 SALINITY                                                            None
+264 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+265 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+266 004001 YEAR                                                                2023
+267 004002 MONTH                                                               2
+268 004003 DAY                                                                 28
+269 004004 HOUR                                                                8
+270 004005 MINUTE                                                              17
+271 004006 SECOND                                                              None
+272 005001 LATITUDE (HIGH ACCURACY)                                            -36.16474
+273 006001 LONGITUDE (HIGH ACCURACY)                                           175.33156
+274 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+275 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+276 007062 DEPTH BELOW SEA/WATER SURFACE                                       20.9
+277 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+278 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+279 022065 WATER PRESSURE                                                      211000.0
+280 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+281 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+282 022045 SEA/WATER TEMPERATURE                                               293.8
+283 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+284 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+285 022066 WATER CONDUCTIVITY                                                  None
+286 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+287 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+288 022064 SALINITY                                                            None
+289 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+290 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+291 004001 YEAR                                                                2023
+292 004002 MONTH                                                               2
+293 004003 DAY                                                                 28
+294 004004 HOUR                                                                8
+295 004005 MINUTE                                                              17
+296 004006 SECOND                                                              None
+297 005001 LATITUDE (HIGH ACCURACY)                                            -36.16475
+298 006001 LONGITUDE (HIGH ACCURACY)                                           175.33159
+299 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+300 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+301 007062 DEPTH BELOW SEA/WATER SURFACE                                       19.9
+302 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+303 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+304 022065 WATER PRESSURE                                                      200000.0
+305 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+306 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+307 022045 SEA/WATER TEMPERATURE                                               293.892
+308 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+309 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+310 022066 WATER CONDUCTIVITY                                                  None
+311 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+312 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+313 022064 SALINITY                                                            None
+314 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+315 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+316 004001 YEAR                                                                2023
+317 004002 MONTH                                                               2
+318 004003 DAY                                                                 28
+319 004004 HOUR                                                                8
+320 004005 MINUTE                                                              17
+321 004006 SECOND                                                              None
+322 005001 LATITUDE (HIGH ACCURACY)                                            -36.16475
+323 006001 LONGITUDE (HIGH ACCURACY)                                           175.33159
+324 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+325 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+326 007062 DEPTH BELOW SEA/WATER SURFACE                                       18.9
+327 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+328 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+329 022065 WATER PRESSURE                                                      190000.0
+330 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+331 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+332 022045 SEA/WATER TEMPERATURE                                               293.975
+333 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+334 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+335 022066 WATER CONDUCTIVITY                                                  None
+336 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+337 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+338 022064 SALINITY                                                            None
+339 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+340 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+341 004001 YEAR                                                                2023
+342 004002 MONTH                                                               2
+343 004003 DAY                                                                 28
+344 004004 HOUR                                                                8
+345 004005 MINUTE                                                              17
+346 004006 SECOND                                                              None
+347 005001 LATITUDE (HIGH ACCURACY)                                            -36.16475
+348 006001 LONGITUDE (HIGH ACCURACY)                                           175.33159
+349 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+350 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+351 007062 DEPTH BELOW SEA/WATER SURFACE                                       17.7
+352 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+353 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+354 022065 WATER PRESSURE                                                      178000.0
+355 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+356 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+357 022045 SEA/WATER TEMPERATURE                                               293.998
+358 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+359 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+360 022066 WATER CONDUCTIVITY                                                  None
+361 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+362 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+363 022064 SALINITY                                                            None
+364 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+365 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+366 004001 YEAR                                                                2023
+367 004002 MONTH                                                               2
+368 004003 DAY                                                                 28
+369 004004 HOUR                                                                8
+370 004005 MINUTE                                                              17
+371 004006 SECOND                                                              None
+372 005001 LATITUDE (HIGH ACCURACY)                                            -36.1647
+373 006001 LONGITUDE (HIGH ACCURACY)                                           175.33158
+374 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+375 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+376 007062 DEPTH BELOW SEA/WATER SURFACE                                       16.6
+377 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+378 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+379 022065 WATER PRESSURE                                                      167000.0
+380 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+381 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+382 022045 SEA/WATER TEMPERATURE                                               294.024
+383 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+384 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+385 022066 WATER CONDUCTIVITY                                                  None
+386 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+387 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+388 022064 SALINITY                                                            None
+389 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+390 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+391 004001 YEAR                                                                2023
+392 004002 MONTH                                                               2
+393 004003 DAY                                                                 28
+394 004004 HOUR                                                                8
+395 004005 MINUTE                                                              17
+396 004006 SECOND                                                              None
+397 005001 LATITUDE (HIGH ACCURACY)                                            -36.16474
+398 006001 LONGITUDE (HIGH ACCURACY)                                           175.33158
+399 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+400 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+401 007062 DEPTH BELOW SEA/WATER SURFACE                                       15.4
+402 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+403 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+404 022065 WATER PRESSURE                                                      155000.0
+405 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+406 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+407 022045 SEA/WATER TEMPERATURE                                               294.062
+408 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+409 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+410 022066 WATER CONDUCTIVITY                                                  None
+411 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+412 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+413 022064 SALINITY                                                            None
+414 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+415 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+416 004001 YEAR                                                                2023
+417 004002 MONTH                                                               2
+418 004003 DAY                                                                 28
+419 004004 HOUR                                                                8
+420 004005 MINUTE                                                              17
+421 004006 SECOND                                                              None
+422 005001 LATITUDE (HIGH ACCURACY)                                            -36.1647
+423 006001 LONGITUDE (HIGH ACCURACY)                                           175.33156
+424 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+425 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+426 007062 DEPTH BELOW SEA/WATER SURFACE                                       14.3
+427 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+428 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+429 022065 WATER PRESSURE                                                      144000.0
+430 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+431 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+432 022045 SEA/WATER TEMPERATURE                                               294.098
+433 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+434 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+435 022066 WATER CONDUCTIVITY                                                  None
+436 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+437 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+438 022064 SALINITY                                                            None
+439 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+440 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+441 004001 YEAR                                                                2023
+442 004002 MONTH                                                               2
+443 004003 DAY                                                                 28
+444 004004 HOUR                                                                8
+445 004005 MINUTE                                                              17
+446 004006 SECOND                                                              None
+447 005001 LATITUDE (HIGH ACCURACY)                                            -36.1647
+448 006001 LONGITUDE (HIGH ACCURACY)                                           175.33156
+449 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+450 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+451 007062 DEPTH BELOW SEA/WATER SURFACE                                       13.2
+452 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+453 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+454 022065 WATER PRESSURE                                                      133000.0
+455 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+456 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+457 022045 SEA/WATER TEMPERATURE                                               294.107
+458 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+459 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+460 022066 WATER CONDUCTIVITY                                                  None
+461 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+462 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+463 022064 SALINITY                                                            None
+464 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+465 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+466 004001 YEAR                                                                2023
+467 004002 MONTH                                                               2
+468 004003 DAY                                                                 28
+469 004004 HOUR                                                                8
+470 004005 MINUTE                                                              18
+471 004006 SECOND                                                              None
+472 005001 LATITUDE (HIGH ACCURACY)                                            -36.16474
+473 006001 LONGITUDE (HIGH ACCURACY)                                           175.33159
+474 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+475 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+476 007062 DEPTH BELOW SEA/WATER SURFACE                                       12.0
+477 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+478 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+479 022065 WATER PRESSURE                                                      121000.0
+480 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+481 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+482 022045 SEA/WATER TEMPERATURE                                               294.117
+483 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+484 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+485 022066 WATER CONDUCTIVITY                                                  None
+486 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+487 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+488 022064 SALINITY                                                            None
+489 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+490 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+491 004001 YEAR                                                                2023
+492 004002 MONTH                                                               2
+493 004003 DAY                                                                 28
+494 004004 HOUR                                                                8
+495 004005 MINUTE                                                              18
+496 004006 SECOND                                                              None
+497 005001 LATITUDE (HIGH ACCURACY)                                            -36.16474
+498 006001 LONGITUDE (HIGH ACCURACY)                                           175.33159
+499 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+500 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+501 007062 DEPTH BELOW SEA/WATER SURFACE                                       11.0
+502 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+503 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+504 022065 WATER PRESSURE                                                      111000.0
+505 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+506 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+507 022045 SEA/WATER TEMPERATURE                                               294.124
+508 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+509 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+510 022066 WATER CONDUCTIVITY                                                  None
+511 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+512 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+513 022064 SALINITY                                                            None
+514 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+515 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+516 004001 YEAR                                                                2023
+517 004002 MONTH                                                               2
+518 004003 DAY                                                                 28
+519 004004 HOUR                                                                8
+520 004005 MINUTE                                                              18
+521 004006 SECOND                                                              None
+522 005001 LATITUDE (HIGH ACCURACY)                                            -36.16474
+523 006001 LONGITUDE (HIGH ACCURACY)                                           175.33159
+524 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+525 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+526 007062 DEPTH BELOW SEA/WATER SURFACE                                       9.9
+527 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+528 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+529 022065 WATER PRESSURE                                                      100000.0
+530 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+531 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+532 022045 SEA/WATER TEMPERATURE                                               294.129
+533 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+534 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+535 022066 WATER CONDUCTIVITY                                                  None
+536 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+537 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+538 022064 SALINITY                                                            None
+539 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+540 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+541 004001 YEAR                                                                2023
+542 004002 MONTH                                                               2
+543 004003 DAY                                                                 28
+544 004004 HOUR                                                                8
+545 004005 MINUTE                                                              18
+546 004006 SECOND                                                              None
+547 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+548 006001 LONGITUDE (HIGH ACCURACY)                                           175.33162
+549 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+550 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+551 007062 DEPTH BELOW SEA/WATER SURFACE                                       8.9
+552 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+553 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+554 022065 WATER PRESSURE                                                      90000.0
+555 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+556 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+557 022045 SEA/WATER TEMPERATURE                                               294.131
+558 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+559 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+560 022066 WATER CONDUCTIVITY                                                  None
+561 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+562 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+563 022064 SALINITY                                                            None
+564 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+565 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+566 004001 YEAR                                                                2023
+567 004002 MONTH                                                               2
+568 004003 DAY                                                                 28
+569 004004 HOUR                                                                8
+570 004005 MINUTE                                                              18
+571 004006 SECOND                                                              None
+572 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+573 006001 LONGITUDE (HIGH ACCURACY)                                           175.33162
+574 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+575 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+576 007062 DEPTH BELOW SEA/WATER SURFACE                                       7.9
+577 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+578 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+579 022065 WATER PRESSURE                                                      80000.0
+580 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+581 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+582 022045 SEA/WATER TEMPERATURE                                               294.13
+583 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+584 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+585 022066 WATER CONDUCTIVITY                                                  None
+586 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+587 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+588 022064 SALINITY                                                            None
+589 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+590 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+591 004001 YEAR                                                                2023
+592 004002 MONTH                                                               2
+593 004003 DAY                                                                 28
+594 004004 HOUR                                                                8
+595 004005 MINUTE                                                              18
+596 004006 SECOND                                                              None
+597 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+598 006001 LONGITUDE (HIGH ACCURACY)                                           175.33162
+599 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+600 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+601 007062 DEPTH BELOW SEA/WATER SURFACE                                       6.8
+602 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+603 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+604 022065 WATER PRESSURE                                                      69000.0
+605 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+606 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+607 022045 SEA/WATER TEMPERATURE                                               294.128
+608 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+609 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+610 022066 WATER CONDUCTIVITY                                                  None
+611 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+612 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+613 022064 SALINITY                                                            None
+614 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+615 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+616 004001 YEAR                                                                2023
+617 004002 MONTH                                                               2
+618 004003 DAY                                                                 28
+619 004004 HOUR                                                                8
+620 004005 MINUTE                                                              18
+621 004006 SECOND                                                              None
+622 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+623 006001 LONGITUDE (HIGH ACCURACY)                                           175.33161
+624 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+625 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+626 007062 DEPTH BELOW SEA/WATER SURFACE                                       5.7
+627 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+628 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+629 022065 WATER PRESSURE                                                      57000.0
+630 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+631 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+632 022045 SEA/WATER TEMPERATURE                                               294.127
+633 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+634 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+635 022066 WATER CONDUCTIVITY                                                  None
+636 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+637 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+638 022064 SALINITY                                                            None
+639 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+640 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+641 004001 YEAR                                                                2023
+642 004002 MONTH                                                               2
+643 004003 DAY                                                                 28
+644 004004 HOUR                                                                8
+645 004005 MINUTE                                                              18
+646 004006 SECOND                                                              None
+647 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+648 006001 LONGITUDE (HIGH ACCURACY)                                           175.33161
+649 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+650 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+651 007062 DEPTH BELOW SEA/WATER SURFACE                                       4.5
+652 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+653 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+654 022065 WATER PRESSURE                                                      45000.0
+655 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+656 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+657 022045 SEA/WATER TEMPERATURE                                               294.128
+658 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+659 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+660 022066 WATER CONDUCTIVITY                                                  None
+661 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+662 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+663 022064 SALINITY                                                            None
+664 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+665 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+666 004001 YEAR                                                                2023
+667 004002 MONTH                                                               2
+668 004003 DAY                                                                 28
+669 004004 HOUR                                                                8
+670 004005 MINUTE                                                              18
+671 004006 SECOND                                                              None
+672 005001 LATITUDE (HIGH ACCURACY)                                            -36.16473
+673 006001 LONGITUDE (HIGH ACCURACY)                                           175.33161
+674 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    20
+675 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+676 007062 DEPTH BELOW SEA/WATER SURFACE                                       3.2
+677 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    13
+678 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+679 022065 WATER PRESSURE                                                      32000.0
+680 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    10
+681 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+682 022045 SEA/WATER TEMPERATURE                                               294.222
+683 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    11
+684 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+685 022066 WATER CONDUCTIVITY                                                  None
+686 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+687 033050 GLOBAL GTSPP QUALITY FLAG                                           9
+688 022064 SALINITY                                                            None
+689 008080 QUALIFIER FOR GTSPP QUALITY FLAG                                    None
+690 033050 GLOBAL GTSPP QUALITY FLAG                                           None
+<<<<<< section 5 >>>>>>
+stop_signature = '7777'

@@ -1,0 +1,174 @@
+Metadata-Version: 2.1
+Name: GTS-encode
+Version: 1.0.1
+Summary: Mangopare BUFR encoding tools
+Author: MetOcean Solutions
+Author-email: mireya.montano@metocean.co.nz
+License: MIT license
+Keywords: BUFR encoding
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: >=3.0
+Description-Content-Type: text/x-rst
+License-File: LICENSE.md
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+# Encoding Mang\-opare sensors using ECCODES
+
+To run this code is necesary to install [eccodes](https://github.com/ecmwf/eccodes). No additional libraries are needed as the requirements for eccodes are enough.
+
+## To install
+
+Follow the following instructions 
+
+`sudo apt-get install libeccodes-dev`
+
+`sudo apt-get install libeccodes-tools`
+
+`sudo apt-get install python-pip`
+
+The package is installed from PyPI with:
+
+`pip install eccodes-python`
+
+
+To verify install 
+`python -m eccodes selfcheck`
+
+## Example
+Please refere to example.py for an example
+
+## Encoding support for mangopare sensors.
+
+This encoding uses the toolbox developed by eccodes and it is adapted to encode mangopare sensors using the template for Temperature and salinity profile observed by profile floats (315003) and the template to represent data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles (315007).
+
+
+The WOM table codes of the subfloat template are:  
+- **Category 15** – Oceanographic report sequence 
+- **Sequence 003** – Temperature and salinity profile observed by profile floats
+The template includes the following items 
+```
+301011 Time
+005001 Latitude
+006001 Longitude
+008080 Qualifier for GTSPP Quality Flag
+033050 Global GTSPP Quality Flag
+007065 Water Pressure (Pa)
+008080 Qualifier for GTSPP Quality Flag
+033050 Global GTSPP Quality Flag
+022045 Oceanographic Water Temperature (K)
+```
+
+The WOM table codes of the ship template are:
+- **Category 15** – Oceanographic report sequence 
+- **Sequence 007** – Representation of data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles
+The Template includes the following items
+```
+301003 Ship's call sign and motion
+Extended identification 
+001019 Long station or site name
+001103 IMO Number
+001087 WMO marine observing platflorm extended identifier
+Cruise/ship line information
+001036 Agency in chage of operating the observing platform
+001115 Identifier of the cruise or mission under which the data were collected
+001080 Ship line number according to SOOP
+005036 Ship transect number according to SOOP
+301011 Year, month, day
+301012 Hour, minute
+301021 Latitude/Longitude (high accuracy)
+Profile Information
+001079 Unique identifier for the profile
+001023 Observation sequence number
+022063 Total water depth
+Surface Pressure
+101000 Delayed replication of 1 descriptor
+031000 Short delayed descriptor replication factor
+302001 Pressure and 3-hour pressure change
+Waves
+101000 Delayed replication of 1 descriptor
+031000 Short delayed descriptor replication factor
+302021 Waves
+Temperature and humidity data
+101000 Delayed replication of 1 descriptor
+031000 Short delayed descriptor replication factor
+302052 Ship temperature and humidity data
+Wind data
+101000 Delayed replication of 1 descriptor
+031000 Short delayed descriptor replication factor
+302059 Ship wind data    
+Surface temperature, salinity and current
+022067 Instrument type for water temperature/salinity profile measurement
+002171 Instrument serial number for water temperature profile measurement
+302090 Sea/water temperature high precision (surface)
+306033 Surface salinity
+306034 Surface current  
+002171 Instrument serial number for water temperature profile measurement (set to missing)
+022067 Instrument type for water temperature/salinity profile measurement (set to missing)
+Temperature and salinity profile data
+002038 Method of water temperature and/or salinity measurement
+022067 Instrument type for water temperature /salinity profile measurement
+022068 Water temperature profile recorder types
+002171 Instrument serial number for water temperature profile measurement
+002033 Method of salinity/depth measurement
+002032 Indicator for digitization
+022056 Direction of profile
+003011 Method of depth calculation 
+306035 Temperature and salinity profile
+Current profile data
+107000 Delayed replication of 7 descriptors
+031000 Short delayed descriptor replication factor
+002032 Indicator for digitization
+003010 Method of sea/water current measurement
+002031 Duration and time of current measurement
+002040 Method of removing velocity and motion of platform from current
+022056 Direction of profile
+003011 Method of depth calculation
+306036 Current profile
+Dissolved oxygen profile data
+104000 Delayed replication of 4 descriptors
+031000 Short delayed descriptor replication factor
+002032 Indicator for digitization
+003012 Instrument type/sensor for dissolved oxygen measurement
+003011 Method of depth calculation        
+306037 Dissolved oxygen profile data
+```
+
+### Notes 
+Mangopare sensor has the depth in meters - this is converted to dbars then to Pa (utils function pres)
+Mangopare provides the temperature in Celsius - this is converted to Kelvin 
+
+## Index
+### GTS_encode_subfloat
+Includes classes to encode the data into GTS data. 
+
+There is two classes: 
+- GTS_encode_subfloat: encodes according to the standards suggested by WMO
+- GTS_encode_ship: encodes according to the standards suggested by WMO
+
+## Licensing
+Please see LICENSE.md for the license under which this code can be shared.  Please consider contributing to the code under this repository whenever possible rather then forking or cloning into a new repository so all can benefit from collaborative work.  If you need to fork/clone into a new repository, please let us know so we can include any new developments as a community.
+
+---
+## Attribution Statement
+Original code base by MetOcean Solutions, a Division of Meteorological Service of New Zealand Ltd, developed as part of the Moana Project. The Moana Project is funded by the New Zealand Ministry of Business, Innovation, and Employment (MBIE) Endeavour Fund.
+
+Contributors to the current version in include: MetOcean Solutions, Berring Data Collective
+
+The Mangōpare sensor and deck unit hardware were developed by Zebra-Tech, Ltd, Nelson, New Zealand as part of the Moana Project.  Sensors are available through https://www.zebra-tech.co.nz/
+
+---
+## Community
+A fishing vessel, in-situ ocean observing quality control working group is in development through FVON (https://fvon.org/).  Please contact either the Moana Project (info@moanaproject.org) or FVON (through their website) for more information.
+
+---

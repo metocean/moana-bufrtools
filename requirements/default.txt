@@ -1,0 +1,11 @@
+numpy
+netCDF4
+bottleneck
+pandas
+xarray
+dask
+eccodes
+eccodes-python
+matplotlib
+sortedcontainers
+
