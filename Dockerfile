@@ -24,7 +24,6 @@ WORKDIR /source/moana-bufrtools
 COPY . /source/moana-bufrtools
 
 RUN pip install -r requirements/default.txt &&\
-    pip install -r requirements/tests.txt &&\
     pip install -e . --no-cache-dir
 
 CMD ["/bin/bash"]
