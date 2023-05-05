@@ -8,7 +8,7 @@ This encoding uses the toolbox developed by eccodes and it is adapted to encode 
 
 At the moment we provide the option to decide if only the final upcast should be extracted, or the full deployment. `upcast=True` or `upcast=False`.
 
-Additionally, as default we are only using mangōpare sensors data that has a Quality Contro Flag of Good (`QC_Flag=1`), to use Good and Probably good data set `QC_Flag=[1,2]`. 
+Additionally, as default we are only using mangōpare sensors data that has a Quality Contro; Flag of Good (`QC_Flag=1`), to use Good and Probably good data set `QC_Flag=[1,2]`. 
 
 ## Installation
 To install the toolbox and additional requirements please use the following
@@ -18,7 +18,7 @@ To install the toolbox and additional requirements please use the following
 `python setup.py install`
 
 ## Example
-The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. However, this probably could be expanded to a broader audience if a configuration file is added instead. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code (Code Table C-11). The default options are to extract only the upcast (`upcast=True`) and QC_flagged Good data (`QC_Flag=1`). The output would be an encoded bufr file in the same folder as the input file. The bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
+The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. However, this probably could be expanded to a broader audience if a configuration file is added instead. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and QC_flagged Good data (`QC_Flag=1`). The output would be an encoded bufr file in the same folder as the input file. The bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
 
 ``` python
 from GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
