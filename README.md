@@ -30,7 +30,10 @@ GTS.run()
 ---
 ## Encoding support for mangōpare sensors.
 
-This encoding uses the toolbox developed by eccodes and it is adapted to encode mangōpare sensors' netcdf files. There is the option of using one of three [templates](https://community.wmo.int/en/activity-areas/wis/template-examples) (subsurface floats ([315003](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EZvB7yzzGMBOnVjh6ifiH1QB1ZpRu3YNjtuIszsa42tFig?e=Evfb5R)), ship deployment template ([315007](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EXh6sBgXywNAludHk-kEGNQB-ipxQJX6X8aYCNjF1Nlwzg?e=va2b1A)), glider template ([315012](https://github.com/wmo-im/BUFR4/issues/16), *work in process*)). 
+This encoding uses the toolbox developed by eccodes and it is adapted to encode mangōpare sensors' netcdf files. There is the option of using one of three [templates](https://community.wmo.int/en/activity-areas/wis/template-examples):
+- BUFR template for Temperature and salinity profile observed by sub-surface profiling floats (**subfloat**, [315003](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EZvB7yzzGMBOnVjh6ifiH1QB1ZpRu3YNjtuIszsa42tFig?e=Evfb5R))
+- BUFR template for representation of data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles (**ship**, [315007](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EXh6sBgXywNAludHk-kEGNQB-ipxQJX6X8aYCNjF1Nlwzg?e=va2b1A)) 
+- BUFR template for representation of observations from a single glider trajectory profile (**glider**, [315012](https://github.com/wmo-im/BUFR4/issues/16), *work in process*)). 
 
 At the moment we provide the option to decide if only the upcast should be extracted, or the full deployment. `upcast=True` or `upcast=False`.
 
@@ -235,7 +238,7 @@ The Template includes the following items
 |008080 	|Qualifier for GTSPP quality flag 	26, sea water potential density at a level |
 |033050 	|Global GTSPP quality flag |
 
-* These fields are not available for current tables, these are fields to be added with the glider template
+\* These fields are not available for current tables, these are fields to be added with the glider template
 ---
 ## Licensing
 Please see LICENSE.md for the license under which this code can be shared.  Please consider contributing to the code under this repository whenever possible rather then forking or cloning into a new repository so all can benefit from collaborative work.  If you need to fork/clone into a new repository, please let us know so we can include any new developments as a community.
