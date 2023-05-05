@@ -21,18 +21,18 @@ Then follow these steps.
 pip install -r requirements/default.txt
 ```
 
-```console
+```bash
 python setup.py install
 ```
 
 ### Option 2 | Docker image
 Build image from scratch using the provided files [`Dockerfile`](https://github.com/metocean/moana-bufrtools/blob/main/Dockerfile) and [`geteccodes.sh`](https://github.com/metocean/moana-bufrtools/blob/main/geteccodes.sh). 
 
-```console
+```shell
 docker build -t moana-bufrtools:v1.0.0 .
 ```
 
-```console
+```powershell
 docker run -ti moana-bufrtools:v1.0.0
 ```
 
