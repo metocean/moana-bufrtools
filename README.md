@@ -6,7 +6,7 @@ This encoding uses the toolbox developed by eccodes and it is adapted to encode 
 - BUFR template for representation of data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles (**ship**, [315007](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EXh6sBgXywNAludHk-kEGNQB-ipxQJX6X8aYCNjF1Nlwzg?e=va2b1A)) 
 - BUFR template for representation of observations from a single glider trajectory profile (**glider**, [315012](https://github.com/wmo-im/BUFR4/issues/16), *work in process*)). 
 
-At the moment we provide the option to decide if only the final upcast should be extracted, or the full deployment. `upcast=True` or `upcast=False`.
+At the moment we provide the option to decide if only the final upcast should be extracted, or the full deployment (`upcast=True` or `upcast=False`).
 
 Additionally, as default we are only using mangōpare sensors data that have passed all the Quality Control tests (`QC_flag=1`). However, data that failed a test but can probably be classified as good data can also be used `QC_flag=[1,2]`. To see more about mangōpare sensors quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
 
@@ -51,7 +51,7 @@ Examples of output file. The `.bufr` output file was decoded and [validated](htt
 - **[ship (315007)](https://github.com/metocean/moana-bufrtools/blob/main/test/315007_MOANA_0058_434_230228081912_qc.csv)**
 - **[glider (315012)](https://github.com/metocean/moana-bufrtools/blob/main/test/315012_MOANA_0058_434_230228081912_qc.csv)**
 
-### GTS_encode
+### GTS_encode.py
 Includes classes to encode the data into GTS/BUFR format. This codes are tailored for Mangōpare sensors format, changes might be needed if the netcdf format is different, but it should be straightforward. Probably could be fixed with a configuration file.
 
 There are three classes: 
@@ -95,6 +95,7 @@ The template includes the following items
 |008080 | Qualifier for quality class |
 |033050 | GTSPP quality class|
 
+---
 
 ### GTS_encode_ship
 - **Category 15** – Oceanographic report sequence 
@@ -171,6 +172,8 @@ The Template includes the following items
 |003012 | Instrument type/sensor for dissolved oxygen measurement|
 |003011 | Method of depth calculation   |     
 |306037 | Dissolved oxygen profile data|
+
+---
 
 ### GTS_encode_glider
 The [glider template](https://github.com/wmo-im/BUFR4/issues/16) is a work in process, here is the latest version **Not approved yet**:
