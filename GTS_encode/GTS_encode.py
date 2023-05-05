@@ -245,7 +245,7 @@ class GTS_encode_ship:
         #            ibufr, "agencyInChargeOfOperatingObservingPlatform", self.ds.platform_code
         #        )
         codes_set(ibufr, "identifierOfTheCruiseOrMission", self.ds.platform_code)
-        codes_set(ibufr, "uniqueIdentifierForProfile", self.profile_name)
+        codes_set(ibufr, "uniqueIdentifierForProfile", self.profile_name[5::])
         codes_set(ibufr, "year", int(self.years[-1]))
         codes_set(ibufr, "month", int(self.months[-1]))
         codes_set(ibufr, "day", int(self.days[-1]))
@@ -542,7 +542,7 @@ class GTS_encode_glider:
         codes_set(ibufr, "#1#timePeriod", 50)
         codes_set(ibufr, "#2#latitude", self.latitudes[-1])
         codes_set(ibufr, "#2#longitude", self.longitudes[-1])
-        codes_set(ibufr, "#1#uniqueIdentifierForProfile", self.profile_name)
+        codes_set(ibufr, "#1#uniqueIdentifierForProfile", self.profile_name[5::])
         if self.upcast:
             codes_set(ibufr, "#1#directionOfProfile", 0)
         else:
