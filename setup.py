@@ -24,13 +24,14 @@ CLASSIFIERS = [
     "Programming Language :: Python :: 3.10",
 ]
 
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+def read(fname):
+    with open(os.path.join(HERE, fname)) as openfile:
+        return openfile.read()
 
 def getreq(fpath):
     return read(fpath).splitlines()
-
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
 def ext_configuration(parent_package="", top_path=None):
@@ -73,7 +74,7 @@ setup(
     platforms=["any"],
     install_requires=install_requires,
     setup_requires=setup_requirements,
-    test_require=getreq('requirements/tests.txt')
+    test_require=getreq('requirements/tests.txt'),
     test_suite='pytest',
     python_requires=">=3.0",
     classifiers=CLASSIFIERS,
