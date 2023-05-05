@@ -17,29 +17,29 @@ Make sure that you have installed eccodes. Instructions [here](https://confluenc
 
 Then follow these steps. 
 
-```powershell
+```shell
 pip install -r requirements/default.txt
 ```
 
-```powershell
+```shell
 python setup.py install
 ```
 
 ### Option 2 | Docker image
 Build image from scratch using the provided files [`Dockerfile`](https://github.com/metocean/moana-bufrtools/blob/main/Dockerfile) and [`geteccodes.sh`](https://github.com/metocean/moana-bufrtools/blob/main/geteccodes.sh). 
 
-```powershell
+```shell
 docker build -t moana-bufrtools:v1.0.0 .
 ```
 
-```powershell
+```shell
 docker run -ti moana-bufrtools:v1.0.0
 ```
 
 Note: Don't forget to change to the GTS_encode directory before running python code, and to mount the volumes where your data is located 
-```powershell 
+```shell 
 -v /DATA/PATH:/DATA/PATH
-```.  
+```   
 
 ## Example
 The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and quality control data that passed all the tests (`QC_flag=1`). The output would be an encoded bufr file in the same folder and the same name as the input file with `.bufr` extension. The output file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
