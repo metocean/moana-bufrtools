@@ -46,10 +46,10 @@ Useful functions to support the encoding of mangōpare sensors
 - **[extract_upcast](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L26)** - Extraction of upcast measurements
 - **[pres](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L38)** - conversion of depth (m) to pressure (Pa)
 
-Examples of encoded then decoded files for each template:
+Examples of and encoded file output. This csv files haven decoded again and [validated](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/)for each template:
 - **[subfloat (315003)](https://github.com/metocean/moana-bufrtools/blob/main/test/315003_MOANA_0058_434_230228081912_qc.csv)**
-- **[subfloat (315007)](https://github.com/metocean/moana-bufrtools/blob/main/test/315007_MOANA_0058_434_230228081912_qc.csv)**
-- **[subfloat (315012)](https://github.com/metocean/moana-bufrtools/blob/main/test/315012_MOANA_0058_434_230228081912_qc.csv)**
+- **[ship (315007)](https://github.com/metocean/moana-bufrtools/blob/main/test/315007_MOANA_0058_434_230228081912_qc.csv)**
+- **[glider (315012)](https://github.com/metocean/moana-bufrtools/blob/main/test/315012_MOANA_0058_434_230228081912_qc.csv)**
 
 ### GTS_encode
 Includes classes to encode the data into GTS/BUFR format. This codes are tailored for Mangōpare sensors format, changes might be needed if the netcdf format is different, but it should be straightforward. Probably could be fixed with a configuration file.
@@ -233,8 +233,8 @@ The Template includes the following items
 |022045 	|Sea/water temperature 	|
 |008080 	|Qualifier for GTSPP quality flag 	11, water temperature at a level |
 |033050 	|Global GTSPP quality flag 	|
-|022066 	|Water conductivity* 	|
-|008080 	|Qualifier for GTSPP quality flag 	25, water conductivity at a level |
+|022066 	|Water conductivity 	|
+|008080 	|Qualifier for GTSPP quality flag 	25, water conductivity at a level * |
 |033050 	|Global GTSPP quality flag 	|
 |022064 	|Salinity 	|
 |008080 	|Qualifier for GTSPP quality flag 	12, salinity at a level |
@@ -243,7 +243,7 @@ The Template includes the following items
 |008080 	|Qualifier for GTSPP quality flag 	26, sea water potential density at a level |
 |033050 	|Global GTSPP quality flag |
 
-`*` These fields are not available for current tables, these are fields to be added with the glider template
+`* These fields are not available for current tables, these are fields to be added with the glider template`
 
 ---
 ## Licensing
