@@ -41,11 +41,15 @@ GTS.run()
 ---
 
 ## Index
-### utils
 Useful functions to support the encoding of mangōpare sensors
 - **[inflection_data](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L13)** - Identification of inflection points
 - **[extract_upcast](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L26)** - Extraction of upcast measurements
 - **[pres](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L38)** - conversion of depth (m) to pressure (Pa)
+
+Examples of encoded then decoded files for each template:
+- **[subfloat (315003)](https://github.com/metocean/moana-bufrtools/blob/main/test/315003_MOANA_0058_434_230228081912_qc.csv)**
+- **[subfloat (315007)](https://github.com/metocean/moana-bufrtools/blob/main/test/315007_MOANA_0058_434_230228081912_qc.csv)**
+- **[subfloat (315012)](https://github.com/metocean/moana-bufrtools/blob/main/test/315012_MOANA_0058_434_230228081912_qc.csv)**
 
 ### GTS_encode
 Includes classes to encode the data into GTS/BUFR format. This codes are tailored for Mangōpare sensors format, changes might be needed if the netcdf format is different, but it should be straightforward. Probably could be fixed with a configuration file.
