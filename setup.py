@@ -22,9 +22,6 @@ CLASSIFIERS = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
-    "Topic :: Scientific/Engineering",
-    "Topic :: Scientific/Engineering :: Physics",
-    "Topic :: Scientific/Engineering :: Visualization",
 ]
 
 
@@ -57,7 +54,7 @@ def read(fname):
 def ext_configuration(parent_package="", top_path=None):
     config = Configuration("", "", "")
     config.add_data_files(
-        "LICENSE.md",
+        "LICENSE",
     )
     return config
 

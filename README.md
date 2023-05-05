@@ -8,7 +8,7 @@ This encoding uses the toolbox developed by eccodes and it is adapted to encode 
 
 At the moment we provide the option to decide if only the final upcast should be extracted, or the full deployment. `upcast=True` or `upcast=False`.
 
-Additionally, as default we are only using mangōpare sensors data that has a Quality Control Flag of Good (`QC_Flag=1`), to use Good and Probably good data set `QC_Flag=[1,2]`. To see more about mangōpare sensors quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
+Additionally, as default we are only using mangōpare sensors data that has a Quality Control Flag of Good (`QC_flag=1`), to use Good and Probably good data set `QC_flag=[1,2]`. To see more about mangōpare sensors quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
 
 ## Installation
 To install the toolbox and additional requirements please use the following
@@ -18,22 +18,22 @@ To install the toolbox and additional requirements please use the following
 `python setup.py install`
 
 ## Example
-The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and QC_flagged Good data (`QC_Flag=1`). The output would be an encoded bufr file in the same folder as the input file. The bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
+The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and QC_flagged Good data (`QC_flag=1`). The output would be an encoded bufr file in the same folder as the input file. The bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
 
 ``` python
 from GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
 
 file = "../test/MOANA_0058_434_230228081912_qc.nc"
 centre_code = 69 # MetService Centre code from table Code Table C-11 69 -> Wellington (RSMC)
-GTS=GTS_encode_subfloat(file, centre_code, upcast=True, QC_Flag=1) #upcast True if only upcast is needed
+GTS=GTS_encode_subfloat(file, centre_code, upcast=True, QC_flag=1) #upcast True if only upcast is needed
 ```
 or 
 ```python
-GTS= GTS_encode_ship(file, centre_code, upcast=True, QC_Flag=1)
+GTS= GTS_encode_ship(file, centre_code, upcast=True, QC_flag=1)
 ```
 or 
 ```python
-GTS= GTS_encode_glider(file, centre_code, upcast=True, QC_Flag=1)
+GTS= GTS_encode_glider(file, centre_code, upcast=True, QC_flag=1)
 ```
 ```python
 GTS.run()

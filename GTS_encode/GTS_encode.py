@@ -16,6 +16,7 @@ from eccodes import (
 )
 from eccodes import *
 from utils import pres, extract_upcast
+import pdb
 
 
 class GTS_encode_subfloat:
@@ -28,12 +29,12 @@ class GTS_encode_subfloat:
     def create_variables_from_netcdf(self):
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
-        if len(self.qcflag) == 1:
+        if self.qcflag == 1:
             QC = np.where(self.df["QC_FLAG"] == self.qcflag)[0]
         elif len(self.qcflag) == 2:
             QC = np.where(
-                self.df["QC_FLAG"] == self.qcflag[0]
-                or self.df["QC_FLAG"] == self.qcflag[1]
+                (self.df["QC_FLAG"] == self.qcflag[0])
+                | (self.df["QC_FLAG"] == self.qcflag[1])
             )[0]
         self.df = self.df.iloc[QC]
         if self.upcast:
@@ -168,12 +169,12 @@ class GTS_encode_ship:
     def create_variables_from_netcdf(self):
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
-        if len(self.qcflag) == 1:
+        if self.qcflag == 1:
             QC = np.where(self.df["QC_FLAG"] == self.qcflag)[0]
         elif len(self.qcflag) == 2:
             QC = np.where(
-                self.df["QC_FLAG"] == self.qcflag[0]
-                or self.df["QC_FLAG"] == self.qcflag[1]
+                (self.df["QC_FLAG"] == self.qcflag[0])
+                | (self.df["QC_FLAG"] == self.qcflag[1])
             )[0]
         self.df = self.df.iloc[QC]
         if self.upcast:
@@ -397,12 +398,12 @@ class GTS_encode_glider:
     def create_variables_from_netcdf(self):
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
-        if len(self.qcflag) == 1:
+        if self.qcflag == 1:
             QC = np.where(self.df["QC_FLAG"] == self.qcflag)[0]
         elif len(self.qcflag) == 2:
             QC = np.where(
-                self.df["QC_FLAG"] == self.qcflag[0]
-                or self.df["QC_FLAG"] == self.qcflag[1]
+                (self.df["QC_FLAG"] == self.qcflag[0])
+                | (self.df["QC_FLAG"] == self.qcflag[1])
             )[0]
         self.df = self.df.iloc[QC]
         if self.upcast:
