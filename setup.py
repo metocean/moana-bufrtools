@@ -25,26 +25,8 @@ CLASSIFIERS = [
 ]
 
 
-def _strip_comments(l):
-    return l.split("#", 1)[0].strip()
-
-
-def _pip_requirement(req):
-    if req.startswith("-r "):
-        _, path = req.split()
-        return reqs(*path.split("/"))
-    return [req]
-
-
-def reqs(*f):
-    """Parse requirement file.
-    Returns:
-        List[str]: list of requirements specified in the file.
-    Example:
-        reqs('default.txt')          # requirements/default.txt
-        reqs('extras', 'redis.txt')  # requirements/extras/redis.txt
-    """
-    return [req for subreq in _reqs(*f) for req in subreq]
+def getreq(fpath):
+    return read(fpath).splitlines()
 
 
 def read(fname):
@@ -75,11 +57,6 @@ install_requires = [
 
 
 setup_requirements = ["pytest-runner"]
-
-setup_requirements = ["pytest-runner"]
-
-test_requirements = ["pytest"]
-
 kwargs = ext_configuration(top_path="").todict()
 
 setup(
@@ -96,8 +73,8 @@ setup(
     platforms=["any"],
     install_requires=install_requires,
     setup_requires=setup_requirements,
-    tests_require=test_requirements,
-    test_suite="tests",
+    test_require=getreq('requirements/tests.txt')
+    test_suite='pytest',
     python_requires=">=3.0",
     classifiers=CLASSIFIERS,
     zip_safe=False,
