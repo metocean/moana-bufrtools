@@ -269,12 +269,12 @@ class GTS_encode_ship:
         #####################################
         ## Surface Measurements ##
         ##########################
-        # At the moment we are extracting the first value of the profile
+        # At the moment we are extracting the last value of the profile
         ## Surface Temperature
         codes_set(ibufr, "#1#methodOfWaterTemperatureAndOrOrSalinityMeasurement", 15)
-        codes_set(ibufr, "#1#oceanographicWaterTemperature", self.temperatures[0])
+        codes_set(ibufr, "#1#oceanographicWaterTemperature", self.temperatures[-1])
         codes_set(
-            ibufr, "#1#depthBelowWaterSurface", self.depths[0] * 100
+            ibufr, "#1#depthBelowWaterSurface", self.depths[-1] * 100
         )  # data must be provided in cm
         ##Surface Salinity
         codes_set_missing(ibufr, "#1#methodOfSalinityOrDepthMeasurement")
@@ -457,6 +457,7 @@ class GTS_encode_glider:
         codes_set_array(
             ibufr, "inputExtendedDelayedDescriptorReplicationFactor", [len(self.df)]
         )
+        # As this template is not officially released we included each of the descriptors manually
         codes_set_array(
             ibufr,
             "unexpandedDescriptors",
