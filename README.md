@@ -18,22 +18,22 @@ Make sure that you have installed eccodes. Instructions [here](https://confluenc
 Then follow these steps. 
 
 ```console
-$ pip install -r requirements/default.txt
+foo@bar:~$ pip install -r requirements/default.txt
 ```
 
-```bash
-$ python setup.py install
+```powershell
+python setup.py install
 ```
 
 ### Option 2 | Docker image
 Build image from scratch using the provided files [`Dockerfile`](https://github.com/metocean/moana-bufrtools/blob/main/Dockerfile) and [`geteccodes.sh`](https://github.com/metocean/moana-bufrtools/blob/main/geteccodes.sh). 
 
-```shell
+```powershell
 $ docker build -t moana-bufrtools:v1.0.0 .
 ```
 
 ```powershell
-$ docker run -ti moana-bufrtools:v1.0.0
+docker run -ti moana-bufrtools:v1.0.0
 ```
 
 Note: Don't forget to change to the GTS_encode directory before running python code, and to mount the volumes where your data is located `-v /DATA/PATH:/DATA/PATH`.  
