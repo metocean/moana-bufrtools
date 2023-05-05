@@ -239,7 +239,8 @@ The Template includes the following items
 |008080 	|Qualifier for GTSPP quality flag 	26, sea water potential density at a level |
 |033050 	|Global GTSPP quality flag |
 
- `*` These fields are not available for current tables, these are fields to be added with the glider template
+`*` These fields are not available for current tables, these are fields to be added with the glider template
+
 ---
 ## Licensing
 Please see LICENSE.md for the license under which this code can be shared.  Please consider contributing to the code under this repository whenever possible rather then forking or cloning into a new repository so all can benefit from collaborative work.  If you need to fork/clone into a new repository, please let us know so we can include any new developments as a community.
