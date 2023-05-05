@@ -15,7 +15,7 @@ from eccodes import (
     codes_set_missing,
 )
 from eccodes import *
-from utils import pres, extract_upcast
+from GTS_encode.utils import pres, extract_upcast
 import pdb
 
 

@@ -21,7 +21,7 @@ jobs:
           DATABASE_HOST: '127.0.0.1'
           DATABASE_USER: root
           DATABASE_PASS: rootpass
-        run: docker run --net=host -e DATABASE_HOST -e DATABASE_PASS -e DATABASE_USER -e GIT_TOKEN --rm metocean/moana-bufrtools:encode-${GITHUB_REF#refs/*/}
+        run: docker run --net=host -e DATABASE_HOST -e DATABASE_PASS -e DATABASE_USER -e GIT_TOKEN --rm metocean/moana-bufrtools:encode-${GITHUB_REF#refs/*/} pytest /source/moana-bufrtools --cov
       - name: Docker push
         run: docker push metocean/moana-bufrtools:encode-${GITHUB_REF#refs/*/}
       - name: Docker logout

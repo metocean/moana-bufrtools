@@ -36,16 +36,16 @@ docker build -t moana-bufrtools:v1.0.0 .
 docker run -ti moana-bufrtools:v1.0.0
 ```
 
-Note: Don't forget to change to the GTS_encode directory before running python code, and to mount the volumes where your data is located i.e., 
+Note: Don't forget to mount the volumes where your data is located i.e., 
 `docker run -v /DATA/PATH:/DATA/PATH moana-bufrtools:v1.0.0 `   
 
 ## Example
 The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and quality control data that passed all the tests (`QC_flag=1`). The output would be an encoded bufr file in the same folder and the same name as the input file with `.bufr` extension. The output file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
 
 ``` python
-from GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
+from GTS.encode.GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
 
-file = "../test/MOANA_0058_434_230228081912_qc.nc"
+file = "../../data/MOANA_0058_434_230228081912_qc.nc"
 centre_code = 69 # MetService Centre code from table Code Table C-11 69 -> Wellington (RSMC)
 GTS=GTS_encode_subfloat(file, centre_code, upcast=True, QC_flag=1) #upcast True if only upcast is needed
 ```
