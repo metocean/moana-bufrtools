@@ -1,3 +1,4 @@
+LICENSE
 LICENSE.md
 MANIFEST.in
 README.md
@@ -5,9 +6,7 @@ setup.cfg
 setup.py
 ./LICENSE.md
 GTS_encode/GTS_encode.py
-GTS_encode/MOANA_public_data.py
 GTS_encode/__init__.py
-GTS_encode/example.py
 GTS_encode/utils.py
 GTS_encode.egg-info/PKG-INFO
 GTS_encode.egg-info/SOURCES.txt
