@@ -3,7 +3,7 @@
 # Get the sources, compile and install ecCodes
 
 cd /tmp && mkdir eccodes && cd eccodes
-wget https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.27.0-Source.tar.gz?api=v2
+wget -o eccodes-2.27.0-Source.tar.gz https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.27.0-Source.tar.gz?api=v2
 tar -xzf eccodes-2.27.0-Source.tar.gz
 mkdir build
 cd build 
