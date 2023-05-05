@@ -84,7 +84,7 @@ class GTS_encode_subfloat:
         codes_set(
             ibufr, "inputExtendedDelayedDescriptorReplicationFactor", len(self.df)
         )
-        codes_set(ibufr, "unexpandedDescriptors", (315003))
+        codes_set(ibufr, "unexpandedDescriptors", 315003)
 
         # Create the structure of the data section
         codes_set(
@@ -153,6 +153,7 @@ class GTS_encode_subfloat:
         codes_write(ibufr, output_filename)
         print("Created output BUFR file ", output_filename)
         codes_release(ibufr)
+        output_filename.close()
 
     def run(self):
         self.create_variables_from_netcdf()
@@ -382,6 +383,7 @@ class GTS_encode_ship:
         codes_write(ibufr, output_filename)
         print("Created output BUFR file ", output_filename)
         codes_release(ibufr)
+        output_filename.close
 
     def run(self):
         self.create_variables_from_netcdf()
@@ -604,6 +606,7 @@ class GTS_encode_glider:
         codes_write(ibufr, output_filename)
         print("Created output BUFR file ", output_filename)
         codes_release(ibufr)
+        output_filename.close
 
     def run(self):
         self.create_variables_from_netcdf()
