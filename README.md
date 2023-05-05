@@ -1,14 +1,25 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-# Encoding Mangōpare sensors using ECCODES
+# BUFR Encoding support for Mangōpare sensors
+
+This encoding uses the toolbox developed by eccodes and it is adapted to encode mangōpare sensors netcdf files. There is the option of using one of three [templates](https://community.wmo.int/en/activity-areas/wis/template-examples):
+- BUFR template for Temperature and salinity profile observed by sub-surface profiling floats (**subfloat**, [315003](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EZvB7yzzGMBOnVjh6ifiH1QB1ZpRu3YNjtuIszsa42tFig?e=Evfb5R))
+- BUFR template for representation of data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles (**ship**, [315007](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EXh6sBgXywNAludHk-kEGNQB-ipxQJX6X8aYCNjF1Nlwzg?e=va2b1A)) 
+- BUFR template for representation of observations from a single glider trajectory profile (**glider**, [315012](https://github.com/wmo-im/BUFR4/issues/16), *work in process*)). 
+
+At the moment we provide the option to decide if only the final upcast should be extracted, or the full deployment. `upcast=True` or `upcast=False`.
+
+Additionally, as default we are only using mangōpare sensors data that has a Quality Contro Flag of Good (`QC_Flag=1`), to use Good and Probably good data set `QC_Flag=[1,2]`. 
 
 ## Installation
-This installs the eccodes libraries and additional libraries needed such as numpy, pandas, xarray
+To install the toolbox and additional requirements please use the following
 
 `pip install -r requirements/default.txt`
 
 `python setup.py install`
 
 ## Example
+The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. However, this probably could be expanded to a broader audience if a configuration file is added instead. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code (Code Table C-11). The default options are to extract only the upcast (`upcast=True`) and QC_flagged Good data (`QC_Flag=1`). The output would be an encoded bufr file in the same folder as the input file. The bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
+
 ``` python
 from GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
 
@@ -28,16 +39,6 @@ GTS= GTS_encode_glider(file, centre_code, upcast=True, QC_Flag=1)
 GTS.run()
 ``` 
 ---
-## Encoding support for mangōpare sensors.
-
-This encoding uses the toolbox developed by eccodes and it is adapted to encode mangōpare sensors' netcdf files. There is the option of using one of three [templates](https://community.wmo.int/en/activity-areas/wis/template-examples):
-- BUFR template for Temperature and salinity profile observed by sub-surface profiling floats (**subfloat**, [315003](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EZvB7yzzGMBOnVjh6ifiH1QB1ZpRu3YNjtuIszsa42tFig?e=Evfb5R))
-- BUFR template for representation of data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles (**ship**, [315007](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EXh6sBgXywNAludHk-kEGNQB-ipxQJX6X8aYCNjF1Nlwzg?e=va2b1A)) 
-- BUFR template for representation of observations from a single glider trajectory profile (**glider**, [315012](https://github.com/wmo-im/BUFR4/issues/16), *work in process*)). 
-
-At the moment we provide the option to decide if only the upcast should be extracted, or the full deployment. `upcast=True` or `upcast=False`.
-
-Additionally, as default we are only using mangōpare sensors data that has a Quality Contro Flag of Good (`QC_Flag=1`), to use Good and Probably good data set `QC_Flag=[1,2]`. 
 
 ## Index
 ### utils

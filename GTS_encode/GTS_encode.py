@@ -19,15 +19,22 @@ from utils import pres, extract_upcast
 
 
 class GTS_encode_subfloat:
-    def __init__(self, filename, centre_code, upcast=False):
+    def __init__(self, filename, centre_code, upcast=True, QC_flag=1):
         self.filename = filename
         self.centre_code = centre_code
         self.upcast = upcast
+        self.qcflag = QC_flag
 
     def create_variables_from_netcdf(self):
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
-        QC = np.where(self.df["QC_FLAG"] == 1)[0]
+        if len(self.qcflag) == 1:
+            QC = np.where(self.df["QC_FLAG"] == self.qcflag)[0]
+        elif len(self.qcflag) == 2:
+            QC = np.where(
+                self.df["QC_FLAG"] == self.qcflag[0]
+                or self.df["QC_FLAG"] == self.qcflag[1]
+            )[0]
         self.df = self.df.iloc[QC]
         if self.upcast:
             self.df = extract_upcast(self.df)
@@ -152,15 +159,22 @@ class GTS_encode_subfloat:
 
 
 class GTS_encode_ship:
-    def __init__(self, filename, centre_code, upcast=False):
+    def __init__(self, filename, centre_code, upcast=True, QC_flag=1):
         self.filename = filename
         self.centre_code = centre_code
         self.upcast = upcast
+        self.qcflag = QC_flag
 
     def create_variables_from_netcdf(self):
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
-        QC = np.where(self.df["QC_FLAG"] == 1)[0]
+        if len(self.qcflag) == 1:
+            QC = np.where(self.df["QC_FLAG"] == self.qcflag)[0]
+        elif len(self.qcflag) == 2:
+            QC = np.where(
+                self.df["QC_FLAG"] == self.qcflag[0]
+                or self.df["QC_FLAG"] == self.qcflag[1]
+            )[0]
         self.df = self.df.iloc[QC]
         if self.upcast:
             self.df = extract_upcast(self.df)
@@ -374,15 +388,22 @@ class GTS_encode_ship:
 
 
 class GTS_encode_glider:
-    def __init__(self, filename, centre_code, upcast=False):
+    def __init__(self, filename, centre_code, upcast=True, QC_flag=1):
         self.filename = filename
         self.centre_code = centre_code
         self.upcast = upcast
+        self.qcflag = QC_flag
 
     def create_variables_from_netcdf(self):
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
-        QC = np.where(self.df["QC_FLAG"] == 1)[0]
+        if len(self.qcflag) == 1:
+            QC = np.where(self.df["QC_FLAG"] == self.qcflag)[0]
+        elif len(self.qcflag) == 2:
+            QC = np.where(
+                self.df["QC_FLAG"] == self.qcflag[0]
+                or self.df["QC_FLAG"] == self.qcflag[1]
+            )[0]
         self.df = self.df.iloc[QC]
         if self.upcast:
             self.df = extract_upcast(self.df)
