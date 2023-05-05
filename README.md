@@ -4,11 +4,11 @@
 This encoding uses the toolbox developed by eccodes and it is adapted to encode mangōpare sensors netcdf files. There is the option of using one of three [templates](https://community.wmo.int/en/activity-areas/wis/template-examples):
 - BUFR template for Temperature and salinity profile observed by sub-surface profiling floats (**subfloat**, [315003](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EZvB7yzzGMBOnVjh6ifiH1QB1ZpRu3YNjtuIszsa42tFig?e=Evfb5R))
 - BUFR template for representation of data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles (**ship**, [315007](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EXh6sBgXywNAludHk-kEGNQB-ipxQJX6X8aYCNjF1Nlwzg?e=va2b1A)) 
-- BUFR template for representation of observations from a single glider trajectory profile (**glider**, [315012](https://github.com/wmo-im/BUFR4/issues/16), *work in process*)). 
+- BUFR template for representation of observations from a single glider trajectory profile (**glider**, [315012](https://github.com/wmo-im/BUFR4/issues/16), *work in process*). 
 
-At the moment we provide the option to decide if only the final upcast should be extracted, or the full deployment (`upcast=True` or `upcast=False`).
+At the moment we provide the option to decide if only the final upcast should be extracted (`upcast=True`), or the full deployment (`upcast=False`).
 
-Additionally, as default we are only using mangōpare sensors data that have passed all the Quality Control tests (`QC_flag=1`). However, data that failed a test but can probably be classified as good data can also be used `QC_flag=[1,2]`. To see more about mangōpare sensors quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
+Additionally, as default we are only using mangōpare sensors data that have passed all the Quality Control tests (`QC_flag=1`). However, data that failed a test but can probably be classified as good data can also be used (`QC_flag=[1,2]`). To see more about mangōpare sensors quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
 
 ## Installation
 To install the toolbox and additional requirements please use the following
@@ -18,7 +18,7 @@ To install the toolbox and additional requirements please use the following
 `python setup.py install`
 
 ## Example
-The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and quality control data that passed all the tests (`QC_flag=1`). The output would be an encoded bufr file in the same folder and the same name as the input file. The output bufr file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
+The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and quality control data that passed all the tests (`QC_flag=1`). The output would be an encoded bufr file in the same folder and the same name as the input file with `.bufr` extension. The output file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
 
 ``` python
 from GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
@@ -62,7 +62,6 @@ There are three classes:
 ### GTS_encode_subfloat 
 - **Category 15** – Oceanographic report sequence 
 - **Sequence 003** – Temperature and salinity profile observed by profile floats
-The template includes the following items 
 
 |315003 | Subsurface float Template|
 | :------------- | :------------- |
@@ -100,7 +99,6 @@ The template includes the following items
 ### GTS_encode_ship
 - **Category 15** – Oceanographic report sequence 
 - **Sequence 007** – Representation of data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles
-The Template includes the following items
 
 |315003 | Ship Template|
 | :------------- | :------------- |
@@ -176,11 +174,10 @@ The Template includes the following items
 ---
 
 ### GTS_encode_glider
-The [glider template](https://github.com/wmo-im/BUFR4/issues/16) is a work in process, here is the latest version **Not approved yet**:
+The [glider template](https://github.com/wmo-im/BUFR4/issues/16) is a work in process, here is the latest version ***Not approved yet***:
 - **Category 15** – Oceanographic report sequence 
-- **Sequence 012** – observations from a single glider trajectory profile
+- **Sequence 012** – Observations from a single glider trajectory profile
 
-The Template includes the following items
 |315012 | Glider Template|
 | :------------- | :------------- |
 ||**Identification** |
