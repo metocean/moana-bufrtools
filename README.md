@@ -1,14 +1,14 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-# BUFR Encoding support for Mangōpare sensors
+# BUFR Encoding support for Moana TD (Mangōpare) sensors
 
-This encoding uses the toolbox developed by eccodes and it is adapted to encode mangōpare sensors netcdf files. There is the option of using one of three [templates](https://community.wmo.int/en/activity-areas/wis/template-examples):
+This encoding uses the toolbox developed by eccodes and it is adapted to encode Moana TD sensor netcdf files, generally obtained from processing raw [Moana TD](https://www.zebra-tech.co.nz/moana/) files with [moana-qc](https://github.com/metocean/moana-qc). There is the option of using one of three [templates](https://community.wmo.int/en/activity-areas/wis/template-examples):
 - BUFR template for Temperature and salinity profile observed by sub-surface profiling floats (**subfloat**, [315003](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EZvB7yzzGMBOnVjh6ifiH1QB1ZpRu3YNjtuIszsa42tFig?e=Evfb5R))
 - BUFR template for representation of data derived from a ship based lowered instrument measuring subsurface seawater temperature, salinity and current profiles (**ship**, [315007](https://wmoomm.sharepoint.com/:w:/s/wmocpdb/EXh6sBgXywNAludHk-kEGNQB-ipxQJX6X8aYCNjF1Nlwzg?e=va2b1A)) 
 - BUFR template for representation of observations from a single glider trajectory profile (**glider**, [315012](https://github.com/wmo-im/BUFR4/issues/16), *work in process*). 
 
 At the moment we provide the option to decide if only the final upcast should be extracted (`upcast=True`), or the full deployment (`upcast=False`).
 
-Additionally, as default we are only using mangōpare sensors data that have passed all the Quality Control tests (`QC_flag=1`). However, data that failed a test but can probably be classified as good data can also be used (`QC_flag=[1,2]`). To see more about mangōpare sensors quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
+Additionally, as default we are only using Moana TD sensor data that have passed all the Quality Control tests (`QC_flag=1`). However, data that failed a test but can probably be classified as good data can also be used (`QC_flag=[1,2]`). To see more about Moana TD sensor quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
 
 ## Installation
 To install the toolbox and additional requirements please use the following instructions.
@@ -40,7 +40,7 @@ Note: Don't forget to mount the volumes where your data is located i.e.,
 `docker run -v /DATA/PATH:/DATA/PATH moana-bufrtools:v1.0.0 `   
 
 ## Example
-The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the mangōpare sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and quality control data that passed all the tests (`QC_flag=1`). The output would be an encoded bufr file in the same folder and the same name as the input file with `.bufr` extension. The output file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
+The proposed GTS_encode is tailored to mangōpare sensors netcdf formatting. This means, the script uses attributes that are encountered in the sensor netcdf files. Below we present a quick example of how to run the code, the user should provide the input file path and the centre code ([Code Table C-11](https://library.wmo.int/doc_num.php?explnum_id=11283)). The default options are to extract only the upcast (`upcast=True`) and quality control data that passed all the tests (`QC_flag=1`). The output would be an encoded bufr file in the same folder and the same name as the input file with `.bufr` extension. The output file can be validated using one of the following tools ([aws](http://aws-bufr-webapp.s3-website-ap-southeast-2.amazonaws.com/) or [ecmwf](https://codes.ecmwf.int/bufr/validator))
 
 ``` python
 from GTS.encode.GTS_encode import GTS_encode_subfloat, GTS_encode_ship, GTS_encode_glider
@@ -63,7 +63,7 @@ GTS.run()
 ---
 
 ## Index
-Useful functions to support the encoding of mangōpare sensors
+Useful functions to support the encoding of Moana TD sensors
 - **[inflection_data](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L13)** - Identification of inflection points
 - **[extract_upcast](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L26)** - Extraction of upcast measurements
 - **[pres](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/utils.py#L38)** - conversion of depth (m) to pressure (Pa)
@@ -74,7 +74,7 @@ Examples of output file. The `.bufr` output file was decoded and [validated](htt
 - **[glider (315012)](https://github.com/metocean/moana-bufrtools/blob/main/test/315012_MOANA_0058_434_230228081912_qc.csv)**
 
 ### GTS_encode.py
-Includes classes to encode the data into GTS/BUFR format. This codes are tailored for Mangōpare sensors format, changes might be needed if the netcdf format is different, but it should be straightforward. Probably could be fixed with a configuration file.
+Includes classes to encode the data into GTS/BUFR format. This codes are tailored for Moana TD sensors format, changes might be needed if the netcdf format is different, but it should be straightforward. Probably could be fixed with a configuration file.
 
 There are three classes: 
 - **[GTS_encode_subfloat](https://github.com/metocean/moana-bufrtools/blob/39d17562c6e5e6bf30dc7769a4517b78a33e7eb8/GTS_encode/GTS_encode.py#L21)**
@@ -277,7 +277,7 @@ Original code base by MetOcean Solutions, a Division of Meteorological Service o
 
 Contributors to the current version in include: MetOcean Solutions
 
-The Mangōpare sensor and deck unit hardware were developed by Zebra-Tech, Ltd, Nelson, New Zealand as part of the Moana Project.  Sensors are available through https://www.zebra-tech.co.nz/
+The Moana TD (Mangōpare) sensor and deck unit hardware were developed by Zebra-Tech, Ltd, Nelson, New Zealand as part of the Moana Project.  Sensors are available through https://www.zebra-tech.co.nz/
 
 ---
 ## Community
