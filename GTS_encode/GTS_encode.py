@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Encoding support for mangopare sensors.
+Encoding support for Moana TD sensors.
 """
 
 import numpy as np
@@ -90,7 +90,7 @@ class GTS_encode_subfloat:
         codes_set(
             ibufr, "marineObservingPlatformIdentifier", int(self.ds.moana_serial_number)
         )
-        codes_set(ibufr, "observingPlatformManufacturerModel", "Mangopare")
+        codes_set(ibufr, "observingPlatformManufacturerModel", "Moana TD")
         codes_set(
             ibufr,
             "observingPlatformManufacturerSerialNumber",
@@ -519,7 +519,7 @@ class GTS_encode_glider:
             ],
         )
         # Create the structure of the data section
-        codes_set(ibufr, "observingPlatformManufacturerModel", "Mangopare")
+        codes_set(ibufr, "observingPlatformManufacturerModel", "Moana TD")
         codes_set(
             ibufr,
             "observingPlatformManufacturerSerialNumber",
