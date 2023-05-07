@@ -1,5 +1,3 @@
-##docker build -t moana-bufrtools:v1.0.0 .
-##docker run -v /Users/mireyamontano/moana-bufrtools:/Users/mireyamontano/moana-bufrtools -ti moana-bufrtools:v1.0.0
 FROM python:3.8
 
 # Install basic dependencies
