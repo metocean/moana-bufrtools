@@ -6,6 +6,7 @@ Encoding support for Moana TD sensors.
 
 import numpy as np
 import xarray as xr
+import os
 from eccodes import (
     codes_set,
     codes_set_array,
@@ -13,11 +14,12 @@ from eccodes import (
     codes_release,
     codes_bufr_new_from_samples,
     codes_set_missing,
+    codes_gts_header
 )
 from eccodes import *
-from GTS_encode.utils import pres, extract_upcast
+from GTS_encode.utils import pres, extract_upcast, generate_identifier
 import pdb
-
+import datetime
 
 class GTS_encode_subfloat:
     def __init__(self, filename, centre_code, upcast=True, QC_flag=1):
@@ -25,7 +27,6 @@ class GTS_encode_subfloat:
         self.centre_code = centre_code
         self.upcast = upcast
         self.qcflag = QC_flag
-
     def create_variables_from_netcdf(self):
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
@@ -51,14 +52,14 @@ class GTS_encode_subfloat:
         self.pressures = np.round(self.df["PRESSURE"].values, 2)
         self.temperatures = self.df["TEMPERATURE"].values + 273.15
         self.output_filename = self.filename[0:-3] + ".bufr"
-
     def create_bufr_file(self):
         VERBOSE = 1  # verbose error reporting
-        ibufr = codes_bufr_new_from_samples("BUFR3_local")
+        ibufr = codes_bufr_new_from_samples("BUFR4_local")
+        codes_gts_header(True)
         #######################################
         #########Section 1, Header ############
         #######################################
-        codes_set(ibufr, "edition", 3)
+        codes_set(ibufr, "edition", 4)
         codes_set(ibufr, "masterTableNumber", 0)
         codes_set(ibufr, "bufrHeaderSubCentre", 0)
         codes_set(ibufr, "bufrHeaderCentre", self.centre_code)
@@ -68,6 +69,7 @@ class GTS_encode_subfloat:
         codes_set(
             ibufr, "masterTablesVersionNumber", 28
         )  # Latest version 28 -> 15 November 2021
+        ##8
         codes_set(ibufr, "localTablesVersionNumber", 0)
         codes_set(ibufr, "typicalYearOfCentury", int(str(self.years[0])[2::]))
         codes_set(ibufr, "typicalMonth", int(self.months[0]))
@@ -77,7 +79,6 @@ class GTS_encode_subfloat:
         codes_set(ibufr, "numberOfSubsets", 1)
         codes_set(ibufr, "observedData", 1)
         codes_set(ibufr, "compressedData", 0)
-
         ################################################
         #########Section 3, DataDescription ############
         ################################################
@@ -85,7 +86,6 @@ class GTS_encode_subfloat:
             ibufr, "inputExtendedDelayedDescriptorReplicationFactor", len(self.df)
         )
         codes_set(ibufr, "unexpandedDescriptors", 315003)
-
         # Create the structure of the data section
         codes_set(
             ibufr, "marineObservingPlatformIdentifier", int(self.ds.moana_serial_number)
@@ -108,7 +108,6 @@ class GTS_encode_subfloat:
         codes_set(
             ibufr, "instrumentTypeForWaterTemperatureOrSalinityProfileMeasurement", 995
         )  # CODE-Table 995 -> Marine mammal
-
         #####################################
         #########Section 4, Data ############
         #####################################
@@ -148,13 +147,22 @@ class GTS_encode_subfloat:
         # Encode the keys back in the data section
         codes_set(ibufr, "pack", 1)
         # Create output file
-        output_filename = open(self.output_filename, "wb")
+#        output_filename = open(self.output_filename, "wb")
+        name = generate_name()
+        output_filename = ".".join([name, "bufr"])
+        with open(output_filename, "w") as f:
+            f.write(name + os.linesep )
+        output_filename = open(output_filename, "ab")
         # Write encoded data into a file and close
         codes_write(ibufr, output_filename)
         print("Created output BUFR file ", output_filename)
         codes_release(ibufr)
         output_filename.close()
-
+        # a = 'BUFR'
+        # with open(output_filename, "w") as f:
+        #     for line in f:
+        #         if a in line:
+        #             line = line.replace(a, '')
     def run(self):
         self.create_variables_from_netcdf()
         self.create_bufr_file()
@@ -166,7 +174,6 @@ class GTS_encode_ship:
         self.centre_code = centre_code
         self.upcast = upcast
         self.qcflag = QC_flag
-
     def create_variables_from_netcdf(self):
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
@@ -194,10 +201,10 @@ class GTS_encode_ship:
         self.temperatures = self.df["TEMPERATURE"].values + 273.15
         self.output_filename = self.filename[0:-3] + ".bufr"
         self.profile_name = self.filename.split("_")[-2]
-
     def create_bufr_file(self):
         VERBOSE = 1  # verbose error reporting
         ibufr = codes_bufr_new_from_samples("BUFR3_local")
+        codes_gts_header(True)
         #######################################
         #########Section 1, Header ############
         #######################################
@@ -220,7 +227,6 @@ class GTS_encode_ship:
         codes_set(ibufr, "numberOfSubsets", 1)
         codes_set(ibufr, "observedData", 1)
         codes_set(ibufr, "compressedData", 0)
-
         ################################################
         #########Section 3, DataDescription ############
         ################################################
@@ -378,13 +384,17 @@ class GTS_encode_ship:
         codes_set(ibufr, "pack", 1)
         # Create output file #
         ######################
-        output_filename = open(self.output_filename, "wb")
+ #       output_filename = open(self.output_filename, "wb")
+        name = generate_identifier()
+        output_filename = os.path.join(os.path.dirname(self.filename), ".".join([name.replace(" ","_"), "bufr"]))
+        with open(output_filename, "w") as f:
+            f.write("001"+os.linesep+name+os.linesep)
+        output_filename = open(output_filename, "ab")
         # Write encoded data into a file and close
         codes_write(ibufr, output_filename)
         print("Created output BUFR file ", output_filename)
         codes_release(ibufr)
-        output_filename.close
-
+        output_filename.close()
     def run(self):
         self.create_variables_from_netcdf()
         self.create_bufr_file()

@@ -8,7 +8,16 @@ import numpy as np
 import xarray as xr
 import pandas as pd
 import pdb
+import datetime
+import os
 
+def generate_identifier():
+    first_identifier = "IOVE01"
+    second_identifier = "NZKL"
+    date_generation = datetime.datetime.utcnow()
+    date_identifier = date_generation.strftime("%d%H00")
+    name = " ".join([first_identifier,second_identifier,date_identifier])
+    return name
 
 def inflection_points(data):
     """Identifies the location of the inflection points in a dataset"""
