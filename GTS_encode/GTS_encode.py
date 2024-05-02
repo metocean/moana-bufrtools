@@ -17,14 +17,15 @@ from eccodes import (
     codes_gts_header
 )
 from eccodes import *
-from GTS_encode.utils import pres, extract_upcast, generate_identifier
+from GTS_encode.utils import pres, extract_upcast, generate_identifier, break_down_wmo_id
 import pdb
 import datetime
 
+
 class GTS_encode_subfloat:
-    def __init__(self, filename, centre_code, upcast=True, QC_flag=1):
+    def __init__(self, filename, database_dict, upcast=True, QC_flag=1):
         self.filename = filename
-        self.centre_code = centre_code
+        self.dict = database_dict
         self.upcast = upcast
         self.qcflag = QC_flag
     def create_variables_from_netcdf(self):
@@ -54,7 +55,7 @@ class GTS_encode_subfloat:
         self.output_filename = self.filename[0:-3] + ".bufr"
     def create_bufr_file(self):
         VERBOSE = 1  # verbose error reporting
-        ibufr = codes_bufr_new_from_samples("BUFR4_local")
+        ibufr = codes_bufr_new_from_samples("BUFR4")
         codes_gts_header(True)
         #######################################
         #########Section 1, Header ############
@@ -62,7 +63,7 @@ class GTS_encode_subfloat:
         codes_set(ibufr, "edition", 4)
         codes_set(ibufr, "masterTableNumber", 0)
         codes_set(ibufr, "bufrHeaderSubCentre", 0)
-        codes_set(ibufr, "bufrHeaderCentre", self.centre_code)
+        codes_set(ibufr, "bufrHeaderCentre", int(self.dict.get("centre code")))
         codes_set(ibufr, "updateSequenceNumber", 0)
         codes_set(ibufr, "dataCategory", 31)  # CREX Table A 31 -> Oceanographic Data
         # codes_set(ibufr, "dataSubCategory", 182) #International data-subcategory
@@ -88,13 +89,13 @@ class GTS_encode_subfloat:
         codes_set(ibufr, "unexpandedDescriptors", 315003)
         # Create the structure of the data section
         codes_set(
-            ibufr, "marineObservingPlatformIdentifier", int(self.ds.moana_serial_number)
+            ibufr, "marineObservingPlatformIdentifier", self.dict.get("internal ship id")
         )
-        codes_set(ibufr, "observingPlatformManufacturerModel", "Moana TD")
+        codes_set(ibufr, "observingPlatformManufacturerModel", self.dict.get("sensor model"))
         codes_set(
             ibufr,
             "observingPlatformManufacturerSerialNumber",
-            self.ds.deck_unit_serial_number,
+            self.dict.get("sensor serial"),
         )
         codes_set(ibufr, "buoyType", 2)  # CODE-Table 2 -> subsurface float, moving
         codes_set(ibufr, "dataCollectionLocationSystem", 2)  # CODE_Table 2 -> GPS
@@ -148,7 +149,7 @@ class GTS_encode_subfloat:
         codes_set(ibufr, "pack", 1)
         # Create output file
 #        output_filename = open(self.output_filename, "wb")
-        name = generate_name()
+        name = generate_identifier()
         output_filename = ".".join([name, "bufr"])
         with open(output_filename, "w") as f:
             f.write(name + os.linesep )
@@ -169,12 +170,33 @@ class GTS_encode_subfloat:
 
 
 class GTS_encode_ship:
-    def __init__(self, filename, centre_code, upcast=True, QC_flag=1):
+    def __init__(self, filename, centre_code, outdir, upcast=True, QC_flag=1):
+        """
+        Initialize a GTS_encode object.
+
+        Args:
+            filename (str): The name of the file.
+            centre_code (int): Code Table value for the centre code.
+            upcast (bool, optional): Whether to just choose the upcast. Defaults to True.
+            QC_flag (int, optional): The QC flag. Defaults to 1.
+        """
         self.filename = filename
         self.centre_code = centre_code
+        self.outdir = outdir
         self.upcast = upcast
         self.qcflag = QC_flag
+        
     def create_variables_from_netcdf(self):
+        """
+        Creates variables from a NetCDF file.
+
+        This method opens the NetCDF file specified by `filename` and extracts
+        the required variables for further processing. It performs quality control
+        checks based on the `qcflag` parameter and filters the data accordingly.
+        If `upcast` is True, it extracts the upcast data. Finally, it assigns the
+        extracted variables to instance variables for later use.
+
+        """
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
         if self.qcflag == 1:
@@ -201,14 +223,25 @@ class GTS_encode_ship:
         self.temperatures = self.df["TEMPERATURE"].values + 273.15
         self.output_filename = self.filename[0:-3] + ".bufr"
         self.profile_name = self.filename.split("_")[-2]
+        
     def create_bufr_file(self):
+        """
+        Creates a BUFR file with the specified data.
+
+        This method generates a BUFR file using the provided data and settings. It sets the necessary headers,
+        data descriptions, and data sections for the file. The generated BUFR file can be used
+        for further processing or transmission.
+
+        Returns:
+            BUFR file: A BUFR file containing the specified data.
+        """
         VERBOSE = 1  # verbose error reporting
-        ibufr = codes_bufr_new_from_samples("BUFR3_local")
+        ibufr = codes_bufr_new_from_samples("BUFR4_local")
         codes_gts_header(True)
         #######################################
         #########Section 1, Header ############
         #######################################
-        codes_set(ibufr, "edition", 3)
+        codes_set(ibufr, "edition", 4)
         codes_set(ibufr, "masterTableNumber", 0)
         codes_set(ibufr, "bufrHeaderSubCentre", 0)
         codes_set(ibufr, "bufrHeaderCentre", self.centre_code)
@@ -239,17 +272,23 @@ class GTS_encode_ship:
             "inputExtendedDelayedDescriptorReplicationFactor",
             [len(self.df), 1, 1],
         )
-        codes_set(ibufr, "unexpandedDescriptors", 315007)
+        codes_set(ibufr, "unexpandedDescriptors", ['1125', '1126', '1127', '1128', '315007'])
         ############################################
         # Create the structure of the data section #
         ############################################
-        codes_set(ibufr, "shipOrMobileLandStationIdentifier", self.ds.vessel_id)
+        id_series, issuer_of_identifier, issue_number, local_id = break_down_wmo_id(self.ds.wigos_id)
+        codes_set(ibufr, "wigosIdentifierSeries" ,int(id_series) )
+        codes_set(ibufr, "wigosIssuerOfIdentifier", int(issuer_of_identifier))
+        codes_set(ibufr, "wigosIssueNumber", int(issue_number))
+        codes_set(ibufr,"wigosLocalIdentifierCharacter",local_id)   
+        codes_set(ibufr, "shipOrMobileLandStationIdentifier", self.ds.internal_id)
+        # codes_set(ibufr, "longStationName", self.dict.get("program"))
         codes_set(
-            ibufr, "marineObservingPlatformIdentifier", int(self.ds.moana_serial_number)
+            ibufr, "marineObservingPlatformIdentifier", int(issuer_of_identifier)
         )
-        #        codes_set(
-        #            ibufr, "agencyInChargeOfOperatingObservingPlatform", self.ds.platform_code
-        #        )
+        # codes_set(
+        #     ibufr, "agencyInChargeOfOperatingObservingPlatform", self.dict.get("program")
+        # )
         codes_set(ibufr, "identifierOfTheCruiseOrMission", self.ds.platform_code)
         codes_set(ibufr, "uniqueIdentifierForProfile", self.profile_name[5::])
         codes_set(ibufr, "year", int(self.years[-1]))
@@ -282,8 +321,9 @@ class GTS_encode_ship:
         codes_set(
             ibufr, "#1#depthBelowWaterSurface", self.depths[-1] * 100
         )  # data must be provided in cm
+        codes_set(ibufr, "#1#timeSignificance", 25 )
         ##Surface Salinity
-        codes_set_missing(ibufr, "#1#methodOfSalinityOrDepthMeasurement")
+        codes_set(ibufr, "#1#methodOfSalinityOrDepthMeasurement", 0)
         codes_set_missing(ibufr, "#2#depthBelowWaterSurface")
         codes_set_missing(ibufr, "#1#salinity")
         ##Surface Current
@@ -384,26 +424,34 @@ class GTS_encode_ship:
         codes_set(ibufr, "pack", 1)
         # Create output file #
         ######################
- #       output_filename = open(self.output_filename, "wb")
-        name = generate_identifier()
-        output_filename = os.path.join(os.path.dirname(self.filename), ".".join([name.replace(" ","_"), "bufr"]))
+        self.identifier = generate_identifier(str(self.days[-1]).zfill(2), str(self.hours[-1]).zfill(2), str(self.minutes[-1]).zfill(2))
+        output_filename = os.path.join(self.outdir, ".".join([self.identifier.replace(" ","_"), "bufr"]))
         with open(output_filename, "w") as f:
-            f.write("001"+os.linesep+name+os.linesep)
+            f.write("001"+os.linesep+self.identifier+os.linesep)
         output_filename = open(output_filename, "ab")
+        
         # Write encoded data into a file and close
         codes_write(ibufr, output_filename)
         print("Created output BUFR file ", output_filename)
         codes_release(ibufr)
         output_filename.close()
+        return output_filename
+                  
     def run(self):
+        """
+        Runs the GTS_encode process.
+
+        This method creates variables from a NetCDF file and creates a BUFR file.
+        """
         self.create_variables_from_netcdf()
-        self.create_bufr_file()
+        filename = self.create_bufr_file()
+        return filename
 
 
 class GTS_encode_glider:
-    def __init__(self, filename, centre_code, upcast=True, QC_flag=1):
+    def __init__(self, filename, database_dict, upcast=True, QC_flag=1):
         self.filename = filename
-        self.centre_code = centre_code
+        self.dict = database_dict
         self.upcast = upcast
         self.qcflag = QC_flag
 

@@ -11,13 +11,16 @@ import pdb
 import datetime
 import os
 
-def generate_identifier():
+def generate_identifier(day,hour,minute):
     first_identifier = "IOVE01"
     second_identifier = "NZKL"
-    date_generation = datetime.datetime.utcnow()
-    date_identifier = date_generation.strftime("%d%H00")
+    date_identifier = "".join(day,hour,minute)
     name = " ".join([first_identifier,second_identifier,date_identifier])
     return name
+
+def break_down_wmo_id(wmo_id):
+    id_series, issuer_of_identifier, issue_number, local_id = wmo_id.split('-')
+    return id_series, issuer_of_identifier, issue_number, local_id
 
 def inflection_points(data):
     """Identifies the location of the inflection points in a dataset"""
