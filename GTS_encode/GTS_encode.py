@@ -272,7 +272,7 @@ class GTS_encode_ship:
             "inputExtendedDelayedDescriptorReplicationFactor",
             [len(self.df), 1, 1],
         )
-        codes_set(ibufr, "unexpandedDescriptors", ['1125', '1126', '1127', '1128', '315007'])
+        codes_set_array(ibufr, "unexpandedDescriptors", [1125, 1126, 1127, 1128, 315007])
         ############################################
         # Create the structure of the data section #
         ############################################
@@ -425,17 +425,17 @@ class GTS_encode_ship:
         # Create output file #
         ######################
         self.identifier = generate_identifier(str(self.days[-1]).zfill(2), str(self.hours[-1]).zfill(2), str(self.minutes[-1]).zfill(2))
-        output_filename = os.path.join(self.outdir, ".".join([self.identifier.replace(" ","_"), "bufr"]))
-        with open(output_filename, "w") as f:
+        self.output_filename = os.path.join(self.outdir, ".".join([self.identifier.replace(" ","_"), "bufr"]))
+        with open(self.output_filename, "w") as f:
             f.write("001"+os.linesep+self.identifier+os.linesep)
-        output_filename = open(output_filename, "ab")
+        output_filename = open(self.output_filename, "ab")
         
         # Write encoded data into a file and close
         codes_write(ibufr, output_filename)
         print("Created output BUFR file ", output_filename)
         codes_release(ibufr)
         output_filename.close()
-        return output_filename
+        return self.output_filename
                   
     def run(self):
         """

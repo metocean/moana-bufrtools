@@ -6,7 +6,6 @@ description:  >
     restrictions and standards of publication on GTS using the ship template. This action is a linked task from
     transfer.qc.mangopare and it is the parent task of transfer.mangopare_to_GTS
 
-#filelist: '/data/obs/mangopare/processed/*MOANA*_%y%m%d*.nc'
 out_dir: '/data/obs/mangopare/GTS/'
 template: 'GTS_encode_ship'
 centre_code: 69

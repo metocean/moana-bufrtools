@@ -14,7 +14,7 @@ import os
 def generate_identifier(day,hour,minute):
     first_identifier = "IOVE01"
     second_identifier = "NZKL"
-    date_identifier = "".join(day,hour,minute)
+    date_identifier = "".join([day,hour,minute])
     name = " ".join([first_identifier,second_identifier,date_identifier])
     return name
 
