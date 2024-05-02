@@ -1,4 +1,4 @@
-pycallable:    moana_bufrtools.GTS_encode_wrapper.Wrapper
+pycallable:    GTS_encode.GTS_encode_wrapper.Wrapper
 title: Encoding of Available Quality Controlled Mangopare Observations into GTS BUFR
 description:  >
     This wrapper identifies the quality controlled mangopare observations that 
@@ -7,12 +7,12 @@ description:  >
     transfer.qc.mangopare and it is the parent task of transfer.mangopare_to_GTS
 
 #filelist: '/data/obs/mangopare/processed/*MOANA*_%y%m%d*.nc'
-out_dir:     '/data/obs/mangopare/GTS/'
+out_dir: '/data/obs/mangopare/GTS/'
 template: 'GTS_encode_ship'
-code_centre: 69
+centre_code: 69
 schedule:
     docker:
-      image: metocean/ops-qc:v0.5.1
+      image: metocean/ops-qc:bufrtools_v1.0.0
       volumes:
         - /data_exchange:/data_exchange
         - /data:/data

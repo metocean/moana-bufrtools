@@ -1,4 +1,4 @@
-FROM metocean/ops-qc:v0.4.7
+FROM metocean/ops-qc:v0.5.1
 
 # Install basic dependencies
 RUN apt-get update -y &&\

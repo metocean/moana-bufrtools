@@ -6,7 +6,6 @@ import xarray as xr
 import seawater as sw
 import datetime as dt
 from glob import glob
-from ops_qc.utils import load_yaml
 xr.set_options(keep_attrs=True)
 
 # cycle_dt = dt.datetime.utcnow()
@@ -43,7 +42,7 @@ class Wrapper(object):
         self,
         filelist=None,
         out_dir=None,
-        template="GTS_encode_ship",
+        GTS_template="GTS_encode_ship",
         centre_code=69,
         logger=logging,
         **kwargs,
@@ -51,12 +50,9 @@ class Wrapper(object):
         self.filelist = filelist
         self.out_dir = out_dir
         self.logger = logging
-        self.template=self.template
+        self.GTS_template=GTS_template
         self.centre_code = centre_code
         self._saved_files = {"filelist": []}
-
-    # def set_cycle(self, cycle_dt):
-    #     self.cycle_dt = cycle_dt
 
     def _available_for_GTS_publication(self, filename):
         try:
@@ -82,7 +78,7 @@ class Wrapper(object):
                 "%d/%m/%Y",
             )
             publication_date = np.datetime64(publication_date)
-            if (self.first_measurement - publication_date > 0) & (self.wigos_id != "None"):
+            if (self.first_measurement - publication_date > 0) & (self.wigos_id != "nan"):
                 return eval(public)
             else:
                 return False
@@ -114,10 +110,10 @@ class Wrapper(object):
     def run(self):
         self._set_filelist()
         exec(
-            f"from GTS_encode.GTS_encode import {self.template} as GTS_encode"
+            f"from GTS_encode.GTS_encode import {self.GTS_template} as GTS_encode"
         )
         for file in self.filelist:
-            if self._available_for_publication(file):
+            if self._available_for_GTS_publication(file):
                 self.filename = file
                 # create (mkdir) out_dir if it doesn't exist
                 self._initialize_outdir(self.out_dir)
