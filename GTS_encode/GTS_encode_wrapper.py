@@ -143,7 +143,15 @@ class Wrapper(object):
                 self.filename = file
                 # create (mkdir) out_dir if it doesn't exist
                 self._initialize_outdir(self.out_dir)
-                GTS = GTS_encoding(self.filename, self.centre_code, outdir=self.out_dir)
-                GTS_filename = GTS.run()
-                self._saved_files["filelist"].append(GTS_filename)
+                try: 
+                    GTS = GTS_encoding(self.filename, self.centre_code, outdir=self.out_dir)
+                    GTS_filename = GTS.run()
+                    self._saved_files["filelist"].append(GTS_filename)
+                except Exception as exc:
+                    self.logger.error(
+                        "Could not encode file {}".format(
+                            exc
+                        )
+                    )
+                    
         return self._saved_files
