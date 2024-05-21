@@ -252,7 +252,7 @@ class GTS_encode_ship:
             ibufr, "masterTablesVersionNumber", 28
         )  # Latest version 28 -> 15 November 2021
         codes_set(ibufr, "localTablesVersionNumber", 0)
-        codes_set(ibufr, "typicalYearOfCentury", int(str(self.years[0])[2::]))
+        codes_set(ibufr, "typicalYear", int(self.years[0]))
         codes_set(ibufr, "typicalMonth", int(self.months[0]))
         codes_set(ibufr, "typicalDay", int(self.days[0]))
         codes_set(ibufr, "typicalHour", int(self.hours[0]))
