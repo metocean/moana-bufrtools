@@ -19,11 +19,13 @@ class GTS(object):
         path='/data/obs/GTS/',
         transfer_path='/data/obs/GTS/transfer/',
         logger=logging,
+        server='http://nsmhs.met.co.nz:11120/mhs/queue',
         **kwargs,
     ):
         self.path = path
         self.transfer_path = transfer_path
         self.logger = logger
+        self.server = server
 
     def run(self):
         """
@@ -35,7 +37,7 @@ class GTS(object):
         filelist = sorted(glob.glob(f"{self.path}*.bufr"))
         try:
             for file in filelist:
-                jobstr = f"curl -X PUT --data-binary @{file} http://kt-mhs01.met.co.nz:11120/mhs/queue"
+                jobstr = f"curl -X PUT --data-binary @{file} http://nsmhs.met.co.nz:11120/mhs/queue"
                 proc = subprocess.run(
                     jobstr, shell=True, check=True, capture_output=True
                 )
