@@ -5,6 +5,8 @@ import time
 import glob
 import shutil
 
+logging.basicConfig(level=logging.INFO)
+
 class GTS(object):
     """
     A class that wraps the functionality of transferring files using curl.
@@ -24,8 +26,14 @@ class GTS(object):
     ):
         self.path = path
         self.transfer_path = transfer_path
-        self.logger = logger
+        self.logger = logging
         self.server = server
+
+    def _raise_exception(self, err_message, subset):
+        self.logger.error(err_message)
+        self.failed["id"].append(subset)
+        self.failed["err"].append(err_message)
+        raise Exception(err_message)
 
     def run(self):
         """
@@ -38,12 +46,14 @@ class GTS(object):
         try:
             for file in filelist:
                 jobstr = f"curl -X PUT --data-binary @{file} http://nsmhs.met.co.nz:11120/mhs/queue"
+                self.logger.info(f"Submitting {jobstr}")
                 proc = subprocess.run(
                     jobstr, shell=True, check=True, capture_output=True
                 )
                 # time.sleep(5)
                 shutil.move(file, f"{self.transfer_path}{file.split('/')[-1]}")
         except Exception as exc:
+            self.logger.info(f"No files to publish")
             self.logger.error("No files to publish")
             raise type(exc)(f"No file list found due to: {exc}")
 

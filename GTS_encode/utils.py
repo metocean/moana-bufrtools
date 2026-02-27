@@ -10,6 +10,13 @@ import pandas as pd
 import pdb
 import datetime
 import os
+import re
+
+def increment_identifier_number(filename):
+    match = re.search(r'IOVE(\d+)', filename)
+    number_part = int(match.group(1)) + 1
+    new_filename = re.sub(r'IOVE\d+', f'IOVE{str(number_part).zfill(len(match.group(1)))}', filename)
+    return new_filename
 
 def generate_identifier(day,hour,minute):
     first_identifier = "IOVE01"

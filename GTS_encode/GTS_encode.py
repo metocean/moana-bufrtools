@@ -17,7 +17,7 @@ from eccodes import (
     codes_gts_header
 )
 from eccodes import *
-from GTS_encode.utils import pres, extract_upcast, generate_identifier, break_down_wmo_id
+from GTS_encode.utils import pres, extract_upcast, generate_identifier, break_down_wmo_id, increment_identifier_number
 import pdb
 import datetime
 
@@ -426,8 +426,11 @@ class GTS_encode_ship:
         ######################
         self.identifier = generate_identifier(str(self.days[-1]).zfill(2), str(self.hours[-1]).zfill(2), str(self.minutes[-1]).zfill(2))
         self.output_filename = os.path.join(self.outdir, ".".join([self.identifier.replace(" ","_"), "bufr"]))
+        while os.path.exists(self.output_filename):
+            self.output_filename = increment_identifier_number(self.output_filename)
         with open(self.output_filename, "w") as f:
             f.write("001"+os.linesep+self.identifier+os.linesep)
+
         output_filename = open(self.output_filename, "ab")
         
         # Write encoded data into a file and close
