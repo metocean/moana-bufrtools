@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "GTS_encode"
+version = "1.0.1"
+description = "Mangopare BUFR encoding tools"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "MetOcean Solutions", email = "mireya.montano@metocean.co.nz"}
+]
+keywords = ["BUFR", "encoding", "oceanography", "moana", "mangopare"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "matplotlib",
+    "python-dateutil",
+    "sortedcontainers",
+    "eccodes==1.2.0",
+    "eccodes-python",
+    "xarray",
+    "dask",
+    "netCDF4",
+    "bottleneck",
+    "numpy",
+    "pandas",
+    "ecmwflibs",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "coverage>=6.0",
+    "mock",
+    "black>=22.0",
+    "ruff>=0.1",
+    "ipython",
+]
+test = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "coverage>=6.0",
+    "mock",
+]
+
+[project.urls]
+Homepage = "https://github.com/metocean/moana-bufrtools"
+Repository = "https://github.com/metocean/moana-bufrtools"
+Issues = "https://github.com/metocean/moana-bufrtools/issues"
+
+[tool.setuptools]
+packages = ["GTS_encode"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+GTS_encode = ["*.txt", "*.yml", "*.yaml"]
+
+
+
+
+
+
