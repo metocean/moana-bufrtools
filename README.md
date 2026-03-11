@@ -11,21 +11,40 @@ At the moment we provide the option to decide if only the final upcast should be
 Additionally, as default we are only using Moana TD sensor data that have passed all the Quality Control tests (`QC_flag=1`). However, data that failed a test but can probably be classified as good data can also be used (`QC_flag=[1,2]`). To see more about Moana TD sensor quality control please visit the [moana-qc repository](https://github.com/metocean/moana-qc.git).
 
 ## Installation
-To install the toolbox and additional requirements please use the following instructions.
-### Option 1 | From source
+
+### Prerequisites
 Make sure that you have installed eccodes. Instructions [here](https://confluence.ecmwf.int/display/ECC/ecCodes+installation)
 
-Then follow these steps. 
+### Option 1 | Using pip (recommended)
+
+Install from source:
+
+```shell
+pip install .
+```
+
+For development (editable install with dev dependencies):
+
+```shell
+pip install -e ".[dev]"
+```
+
+See [DEVELOPERS.md](DEVELOPERS.md) for detailed development setup and workflow.
+
+Or with uv (faster):
+
+```shell
+uv pip install .
+```
+
+### Option 2 | Using pip with requirements files (legacy)
 
 ```shell
 pip install -r requirements/default.txt
+pip install .
 ```
 
-```shell
-python setup.py install
-```
-
-### Option 2 | Docker image
+### Option 3 | Docker image
 Build image from scratch using the provided files [`Dockerfile`](https://github.com/metocean/moana-bufrtools/blob/main/Dockerfile) and [`geteccodes.sh`](https://github.com/metocean/moana-bufrtools/blob/main/geteccodes.sh). 
 
 ```shell
