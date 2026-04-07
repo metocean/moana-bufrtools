@@ -1,5 +1,6 @@
 import os
 import logging
+import json
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -9,7 +10,7 @@ from glob import glob
 import importlib
 xr.set_options(keep_attrs=True)
 
-# cycle_dt = dt.datetime.utcnow()
+cycle_dt = dt.datetime.utcnow()
 
 def keep_numbers_only(s):
     return ''.join(c for c in s if c.isdigit())
@@ -39,6 +40,7 @@ class Wrapper(object):
     def __init__(
         self,
         filelist=None,
+        filelist_json=None,
         out_dir=None,
         GTS_template="GTS_encode_ship",
         centre_code=69,
@@ -46,6 +48,7 @@ class Wrapper(object):
         **kwargs,
     ):
         self.filelist = filelist
+        self.filelist_json = filelist_json
         self.out_dir = out_dir
         self.logger = logging
         self.GTS_template=GTS_template
@@ -53,8 +56,7 @@ class Wrapper(object):
         self._saved_files = {"filelist": []}
 
     def _available_for_GTS_publication(self, filename):
-        """
-        Checks if the data in the given file is available for GTS (Global Telecommunication System) publication.
+        """        Checks if the data in the given file is available for GTS (Global Telecommunication System) publication.
 
         Args:
             filename (str): The path to the file containing the data.
@@ -91,6 +93,9 @@ class Wrapper(object):
         except:
             return False
 
+    def set_cycle(self, cycle_dt):
+        self.cycle_dt = cycle_dt
+
     def _initialize_outdir(self, dir_path):
         """
         Check if outdir exists, create if not
@@ -123,6 +128,19 @@ class Wrapper(object):
             """
             if hasattr(self, "_success_files") and not self.filelist:
                 self.filelist = self._success_files
+            
+            # Read from JSON file if filelist still not set
+            if not self.filelist and self.filelist_json:
+                # Format the path with cycle_dt if available
+                filelist_json_path = self.cycle_dt.strftime(self.filelist_json) if hasattr(self, 'cycle_dt') else self.filelist_json
+                try:
+                    with open(filelist_json_path, 'r') as f:
+                        data = json.load(f)
+                    self.filelist = data.get('success_files', [])
+                    self.logger.info(f"Loaded {len(self.filelist)} files from {filelist_json_path}")
+                except Exception as e:
+                    self.logger.error(f"Could not read filelist JSON {filelist_json_path}: {e}")
+            
             if not self.filelist:
                 self.logger.error(
                     "No file list found, please specify.  No transformation for publication performed."
@@ -135,6 +153,7 @@ class Wrapper(object):
         Returns:
             dict: A dictionary containing the saved files.
         """
+        self.set_cycle(cycle_dt)
         self._set_filelist()
         GTS_encode_module = importlib.import_module('GTS_encode.GTS_encode')
         GTS_encoding = getattr(GTS_encode_module, self.GTS_template)

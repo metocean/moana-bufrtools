@@ -45,8 +45,7 @@ class GTS(object):
         filelist = sorted(glob.glob(f"{self.path}*.bufr"))
         try:
             for file in filelist:
-                jobstr = f"curl -X PUT --data-binary @{file} http://nsmhs.met.co.nz:11120/mhs/queue"
-                self.logger.info(f"Submitting {jobstr}")
+                jobstr = f"curl -X PUT --data-binary @{file} {self.server}"
                 proc = subprocess.run(
                     jobstr, shell=True, check=True, capture_output=True
                 )
