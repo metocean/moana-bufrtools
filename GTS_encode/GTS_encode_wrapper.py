@@ -47,6 +47,12 @@ class Wrapper(object):
         logger=logging,
         **kwargs,
     ):
+        # Extract filelist from config if passed via kwargs (from linked parent tasks)
+        if filelist is None and 'config' in kwargs:
+            filelist = kwargs['config'].get('filelist')
+            if filelist:
+                print(f"Extracted filelist from config kwargs: {len(filelist)} files")
+        
         self.filelist = filelist
         self.filelist_json = filelist_json
         self.out_dir = out_dir
@@ -87,7 +93,13 @@ class Wrapper(object):
             )
             publication_date = np.datetime64(publication_date)
             if (self.first_measurement - publication_date > 0) & (self.wigos_id != "nan"):
-                return eval(public)
+                # Convert public attribute to boolean (handles TRUE/True/true strings)
+                if isinstance(public, bool):
+                    return public
+                elif isinstance(public, str):
+                    return public.upper() == 'TRUE'
+                else:
+                    return bool(public)
             else:
                 return False
         except:
@@ -136,7 +148,8 @@ class Wrapper(object):
                 try:
                     with open(filelist_json_path, 'r') as f:
                         data = json.load(f)
-                    self.filelist = data.get('success_files', [])
+                    # Support 'filelist', 'published_files', and 'success_files' keys
+                    self.filelist = data.get('filelist', data.get('published_files', data.get('success_files', [])))
                     self.logger.info(f"Loaded {len(self.filelist)} files from {filelist_json_path}")
                 except Exception as e:
                     self.logger.error(f"Could not read filelist JSON {filelist_json_path}: {e}")
