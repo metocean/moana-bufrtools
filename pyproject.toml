@@ -28,7 +28,7 @@ dependencies = [
     "matplotlib",
     "python-dateutil",
     "sortedcontainers",
-    "eccodes==1.2.0",
+    "eccodes",
     "eccodes-python",
     "xarray",
     "dask",

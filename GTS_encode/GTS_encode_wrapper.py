@@ -4,16 +4,18 @@ import json
 import numpy as np
 import pandas as pd
 import xarray as xr
-import seawater as sw
+import gsw as gsw
 import datetime as dt
 from glob import glob
 import importlib
+
 xr.set_options(keep_attrs=True)
 
 cycle_dt = dt.datetime.utcnow()
 
+
 def keep_numbers_only(s):
-    return ''.join(c for c in s if c.isdigit())
+    return "".join(c for c in s if c.isdigit())
 
 
 class Wrapper(object):
@@ -37,6 +39,7 @@ class Wrapper(object):
     Returns:
         dict: A dictionary containing the saved files.
     """
+
     def __init__(
         self,
         filelist=None,
@@ -45,24 +48,34 @@ class Wrapper(object):
         GTS_template="GTS_encode_ship",
         centre_code=69,
         logger=logging,
+        QC_flag=[1],
         **kwargs,
     ):
+        self.logger = logger
         # Extract filelist from config if passed via kwargs (from linked parent tasks)
-        if filelist is None and 'config' in kwargs:
-            filelist = kwargs['config'].get('filelist')
+        if filelist is None and "config" in kwargs:
+            filelist = kwargs["config"].get("filelist")
             if filelist:
-                print(f"Extracted filelist from config kwargs: {len(filelist)} files")
-        
+                self.logger.info(
+                    f"Extracted filelist from config kwargs: {len(filelist)} files"
+                )
+
         self.filelist = filelist
         self.filelist_json = filelist_json
         self.out_dir = out_dir
-        self.logger = logging
-        self.GTS_template=GTS_template
+
+        self.GTS_template = GTS_template
         self.centre_code = centre_code
         self._saved_files = {"filelist": []}
+        self._success_files = []
+        self.filename = None
+        self.wigos_id = None
+        self.first_measurement = None
+        self.last_measurement = None
+        self.QC_flag = QC_flag
 
     def _available_for_GTS_publication(self, filename):
-        """        Checks if the data in the given file is available for GTS (Global Telecommunication System) publication.
+        """Checks if the data in the given file is available for GTS (Global Telecommunication System) publication.
 
         Args:
             filename (str): The path to the file containing the data.
@@ -71,38 +84,30 @@ class Wrapper(object):
             bool: True if the data is available for GTS publication, False otherwise.
         """
         try:
-            public = xr.open_dataset(filename, cache=False, engine="netcdf4").attrs[
-                "public"
-            ]
-            self.wigos_id = xr.open_dataset(filename, cache=False, engine="netcdf4").attrs[
-                "wigos_id"
-            ]
-            
-            # Check if the current data is after the agreement signature date
-            self.first_measurement = xr.open_dataset(
-                filename, cache=False, engine="netcdf4"
-            )['DATETIME'][0].values
-            self.last_measurement = xr.open_dataset(
-                filename, cache=False, engine="netcdf4"
-            )['DATETIME'][-1].values
-            publication_date = dt.datetime.strptime(
-                xr.open_dataset(filename, cache=False, engine="netcdf4").attrs[
-                    "publication_date"
-                ],
-                "%d/%m/%Y",
-            )
+            with xr.open_dataset(filename, cache=False, engine="netcdf4") as ds:
+                public = ds.attrs["public"]
+                self.wigos_id = ds.attrs["wigos_id"]
+
+                # Check if the current data is after the agreement signature date
+                self.first_measurement = ds["DATETIME"][0].values
+                self.last_measurement = ds["DATETIME"][-1].values
+                publication_date = dt.datetime.strptime(
+                    ds.attrs["publication_date"],
+                    "%d/%m/%Y",
+                )
+
             publication_date = np.datetime64(publication_date)
-            if (self.first_measurement - publication_date > 0) & (self.wigos_id != "nan"):
+            if (self.first_measurement > publication_date) and (self.wigos_id != "nan"):
                 # Convert public attribute to boolean (handles TRUE/True/true strings)
                 if isinstance(public, bool):
                     return public
                 elif isinstance(public, str):
-                    return public.upper() == 'TRUE'
+                    return public.upper() == "TRUE"
                 else:
                     return bool(public)
             else:
                 return False
-        except:
+        except (KeyError, OSError, ValueError, IndexError):
             return False
 
     def set_cycle(self, cycle_dt):
@@ -121,43 +126,54 @@ class Wrapper(object):
                     exc
                 )
             )
-        
+
     def _set_filelist(self):
-            """
-            Sets the file list for transformation.
+        """
+        Sets the file list for transformation.
 
-            If the `_success_files` attribute is present and the `filelist` attribute is empty,
-            the `_success_files` attribute is assigned to the `filelist` attribute.
+        If the `_success_files` attribute is present and the `filelist` attribute is empty,
+        the `_success_files` attribute is assigned to the `filelist` attribute.
 
-            If the `filelist` attribute is still empty after the above check,
-            an error message is logged indicating that no file list was found.
+        If the `filelist` attribute is still empty after the above check,
+        an error message is logged indicating that no file list was found.
 
-            This method is responsible for setting the file list that will be used for transformation
-            before publication.
+        This method is responsible for setting the file list that will be used for transformation
+        before publication.
 
-            Returns:
-                None
-            """
-            if hasattr(self, "_success_files") and not self.filelist:
-                self.filelist = self._success_files
-            
-            # Read from JSON file if filelist still not set
-            if not self.filelist and self.filelist_json:
-                # Format the path with cycle_dt if available
-                filelist_json_path = self.cycle_dt.strftime(self.filelist_json) if hasattr(self, 'cycle_dt') else self.filelist_json
-                try:
-                    with open(filelist_json_path, 'r') as f:
-                        data = json.load(f)
-                    # Support 'filelist', 'published_files', and 'success_files' keys
-                    self.filelist = data.get('filelist', data.get('published_files', data.get('success_files', [])))
-                    self.logger.info(f"Loaded {len(self.filelist)} files from {filelist_json_path}")
-                except Exception as e:
-                    self.logger.error(f"Could not read filelist JSON {filelist_json_path}: {e}")
-            
-            if not self.filelist:
-                self.logger.error(
-                    "No file list found, please specify.  No transformation for publication performed."
+        Returns:
+            None
+        """
+        if hasattr(self, "_success_files") and not self.filelist:
+            self.filelist = self._success_files
+
+        # Read from JSON file if filelist still not set
+        if not self.filelist and self.filelist_json:
+            # Format the path with cycle_dt if available
+            filelist_json_path = (
+                self.cycle_dt.strftime(self.filelist_json)
+                if hasattr(self, "cycle_dt")
+                else self.filelist_json
+            )
+            try:
+                with open(filelist_json_path, "r") as f:
+                    data = json.load(f)
+                # Support 'filelist', 'published_files', and 'success_files' keys
+                self.filelist = data.get(
+                    "filelist",
+                    data.get("published_files", data.get("success_files", [])),
                 )
+                self.logger.info(
+                    f"Loaded {len(self.filelist)} files from {filelist_json_path}"
+                )
+            except Exception as e:
+                self.logger.error(
+                    f"Could not read filelist JSON {filelist_json_path}: {e}"
+                )
+
+        if not self.filelist:
+            self.logger.error(
+                "No file list found, please specify.  No transformation for publication performed."
+            )
 
     def run(self):
         """
@@ -166,24 +182,25 @@ class Wrapper(object):
         Returns:
             dict: A dictionary containing the saved files.
         """
-        self.set_cycle(cycle_dt)
+        # self.set_cycle(cycle_dt)
         self._set_filelist()
-        GTS_encode_module = importlib.import_module('GTS_encode.GTS_encode')
+        GTS_encode_module = importlib.import_module("GTS_encode.GTS_encode")
         GTS_encoding = getattr(GTS_encode_module, self.GTS_template)
         for file in self.filelist:
             if self._available_for_GTS_publication(file):
                 self.filename = file
                 # create (mkdir) out_dir if it doesn't exist
                 self._initialize_outdir(self.out_dir)
-                try: 
-                    GTS = GTS_encoding(self.filename, self.centre_code, outdir=self.out_dir)
+                try:
+                    GTS = GTS_encoding(
+                        self.filename,
+                        self.centre_code,
+                        outdir=self.out_dir,
+                        QC_flag=self.QC_flag,
+                    )
                     GTS_filename = GTS.run()
                     self._saved_files["filelist"].append(GTS_filename)
                 except Exception as exc:
-                    self.logger.error(
-                        "Could not encode file {}".format(
-                            exc
-                        )
-                    )
-                    
+                    self.logger.error("Could not encode file {}".format(exc))
+
         return self._saved_files

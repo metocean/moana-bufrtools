@@ -12,22 +12,28 @@ import datetime
 import os
 import re
 
+
 def increment_identifier_number(filename):
-    match = re.search(r'IOVE(\d+)', filename)
+    match = re.search(r"IOSX(\d+)", filename)
     number_part = int(match.group(1)) + 1
-    new_filename = re.sub(r'IOVE\d+', f'IOVE{str(number_part).zfill(len(match.group(1)))}', filename)
+    new_filename = re.sub(
+        r"IOSX\d+", f"IOSX{str(number_part).zfill(len(match.group(1)))}", filename
+    )
     return new_filename
 
-def generate_identifier(day,hour,minute):
-    first_identifier = "IOVE01"
+
+def generate_identifier(day, hour, minute):
+    first_identifier = "IOSX01"
     second_identifier = "NZKL"
-    date_identifier = "".join([day,hour,minute])
-    name = " ".join([first_identifier,second_identifier,date_identifier])
+    date_identifier = "".join([day, hour, minute])
+    name = " ".join([first_identifier, second_identifier, date_identifier])
     return name
 
+
 def break_down_wmo_id(wmo_id):
-    id_series, issuer_of_identifier, issue_number, local_id = wmo_id.split('-')
+    id_series, issuer_of_identifier, issue_number, local_id = wmo_id.split("-")
     return id_series, issuer_of_identifier, issue_number, local_id
+
 
 def inflection_points(data):
     """Identifies the location of the inflection points in a dataset"""

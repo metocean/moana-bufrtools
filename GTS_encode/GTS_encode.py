@@ -14,10 +14,16 @@ from eccodes import (
     codes_release,
     codes_bufr_new_from_samples,
     codes_set_missing,
-    codes_gts_header
+    codes_gts_header,
 )
 from eccodes import *
-from GTS_encode.utils import pres, extract_upcast, generate_identifier, break_down_wmo_id, increment_identifier_number
+from GTS_encode.utils import (
+    pres,
+    extract_upcast,
+    generate_identifier,
+    break_down_wmo_id,
+    increment_identifier_number,
+)
 import pdb
 import datetime
 
@@ -28,6 +34,7 @@ class GTS_encode_subfloat:
         self.dict = database_dict
         self.upcast = upcast
         self.qcflag = QC_flag
+
     def create_variables_from_netcdf(self):
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
@@ -53,6 +60,7 @@ class GTS_encode_subfloat:
         self.pressures = np.round(self.df["PRESSURE"].values, 2)
         self.temperatures = self.df["TEMPERATURE"].values + 273.15
         self.output_filename = self.filename[0:-3] + ".bufr"
+
     def create_bufr_file(self):
         VERBOSE = 1  # verbose error reporting
         ibufr = codes_bufr_new_from_samples("BUFR4")
@@ -89,9 +97,13 @@ class GTS_encode_subfloat:
         codes_set(ibufr, "unexpandedDescriptors", 315003)
         # Create the structure of the data section
         codes_set(
-            ibufr, "marineObservingPlatformIdentifier", self.dict.get("internal ship id")
+            ibufr,
+            "marineObservingPlatformIdentifier",
+            self.dict.get("internal ship id"),
         )
-        codes_set(ibufr, "observingPlatformManufacturerModel", self.dict.get("sensor model"))
+        codes_set(
+            ibufr, "observingPlatformManufacturerModel", self.dict.get("sensor model")
+        )
         codes_set(
             ibufr,
             "observingPlatformManufacturerSerialNumber",
@@ -148,11 +160,11 @@ class GTS_encode_subfloat:
         # Encode the keys back in the data section
         codes_set(ibufr, "pack", 1)
         # Create output file
-#        output_filename = open(self.output_filename, "wb")
+        #        output_filename = open(self.output_filename, "wb")
         name = generate_identifier()
         output_filename = ".".join([name, "bufr"])
         with open(output_filename, "w") as f:
-            f.write(name + os.linesep )
+            f.write(name + os.linesep)
         output_filename = open(output_filename, "ab")
         # Write encoded data into a file and close
         codes_write(ibufr, output_filename)
@@ -164,13 +176,14 @@ class GTS_encode_subfloat:
         #     for line in f:
         #         if a in line:
         #             line = line.replace(a, '')
+
     def run(self):
         self.create_variables_from_netcdf()
         self.create_bufr_file()
 
 
 class GTS_encode_ship:
-    def __init__(self, filename, centre_code, outdir, upcast=True, QC_flag=1):
+    def __init__(self, filename, centre_code, outdir, upcast=True, QC_flag=[1]):
         """
         Initialize a GTS_encode object.
 
@@ -185,7 +198,7 @@ class GTS_encode_ship:
         self.outdir = outdir
         self.upcast = upcast
         self.qcflag = QC_flag
-        
+
     def create_variables_from_netcdf(self):
         """
         Creates variables from a NetCDF file.
@@ -199,8 +212,8 @@ class GTS_encode_ship:
         """
         self.ds = xr.open_dataset(self.filename)
         self.df = self.ds.to_dataframe()
-        if self.qcflag == 1:
-            QC = np.where(self.df["QC_FLAG"] == self.qcflag)[0]
+        if len(self.qcflag) == 1:
+            QC = np.where(self.df["QC_FLAG"] == self.qcflag[0])[0]
         elif len(self.qcflag) == 2:
             QC = np.where(
                 (self.df["QC_FLAG"] == self.qcflag[0])
@@ -223,7 +236,7 @@ class GTS_encode_ship:
         self.temperatures = self.df["TEMPERATURE"].values + 273.15
         self.output_filename = self.filename[0:-3] + ".bufr"
         self.profile_name = self.filename.split("_")[-2]
-        
+
     def create_bufr_file(self):
         """
         Creates a BUFR file with the specified data.
@@ -272,25 +285,27 @@ class GTS_encode_ship:
             "inputExtendedDelayedDescriptorReplicationFactor",
             [len(self.df), 1, 1],
         )
-        codes_set_array(ibufr, "unexpandedDescriptors", [1125, 1126, 1127, 1128, 315007])
+        codes_set_array(
+            ibufr, "unexpandedDescriptors", [1125, 1126, 1127, 1128, 315007]
+        )
         ############################################
         # Create the structure of the data section #
         ############################################
-        id_series, issuer_of_identifier, issue_number, local_id = break_down_wmo_id(self.ds.wigos_id)
-        codes_set(ibufr, "wigosIdentifierSeries" ,int(id_series) )
+        id_series, issuer_of_identifier, issue_number, local_id = break_down_wmo_id(
+            self.ds.wigos_id
+        )
+        codes_set(ibufr, "wigosIdentifierSeries", int(id_series))
         codes_set(ibufr, "wigosIssuerOfIdentifier", int(issuer_of_identifier))
         codes_set(ibufr, "wigosIssueNumber", int(issue_number))
-        codes_set(ibufr,"wigosLocalIdentifierCharacter",local_id)   
-        codes_set(ibufr, "shipOrMobileLandStationIdentifier", self.ds.internal_id)
-        # codes_set(ibufr, "longStationName", self.dict.get("program"))
+        codes_set(ibufr, "wigosLocalIdentifierCharacter", local_id)
         codes_set(
-            ibufr, "marineObservingPlatformIdentifier", int(issuer_of_identifier)
+            ibufr, "shipOrMobileLandStationIdentifier", self.ds.internal_vessel_name
         )
-        # codes_set(
-        #     ibufr, "agencyInChargeOfOperatingObservingPlatform", self.dict.get("program")
-        # )
-        codes_set(ibufr, "identifierOfTheCruiseOrMission", self.ds.platform_code)
-        codes_set(ibufr, "uniqueIdentifierForProfile", self.profile_name[5::])
+        # codes_set(ibufr, "longStationName", self.dict.get("program"))
+        codes_set_missing(ibufr, "marineObservingPlatformIdentifier")
+        codes_set(ibufr, "agencyInChargeOfOperatingObservingPlatform", self.centre_code)
+        codes_set(ibufr, "identifierOfTheCruiseOrMission", self.ds.internal_vessel_name)
+        codes_set(ibufr, "uniqueIdentifierForProfile", self.profile_name[4::])
         codes_set(ibufr, "year", int(self.years[-1]))
         codes_set(ibufr, "month", int(self.months[-1]))
         codes_set(ibufr, "day", int(self.days[-1]))
@@ -316,47 +331,59 @@ class GTS_encode_ship:
         ##########################
         # At the moment we are extracting the last value of the profile
         ## Surface Temperature
-        codes_set(ibufr, "#1#methodOfWaterTemperatureAndOrOrSalinityMeasurement", 15)
+        codes_set(ibufr, "#1#methodOfWaterTemperatureAndOrOrSalinityMeasurement", 14)
         codes_set(ibufr, "#1#oceanographicWaterTemperature", self.temperatures[-1])
         codes_set(
-            ibufr, "#1#depthBelowWaterSurface", self.depths[-1] * 100
+            ibufr, "#1#depthBelowWaterSurface", self.depths[-1]
         )  # data must be provided in cm
-        codes_set(ibufr, "#1#timeSignificance", 25 )
-        ##Surface Salinity
-        codes_set(ibufr, "#1#methodOfSalinityOrDepthMeasurement", 0)
-        codes_set_missing(ibufr, "#2#depthBelowWaterSurface")
-        codes_set_missing(ibufr, "#1#salinity")
-        ##Surface Current
-        codes_set_missing(ibufr, "#1#methodOfSeaOrWaterCurrentMeasurement")
-        codes_set_missing(
-            ibufr, "#1#methodOfRemovingVelocityAndMotionOfPlatformFromCurrent"
+        codes_set(
+            ibufr, "#1#timeSignificance", 31
+        )  # choosing missing value as we don't have wind data
+        codes_set(
+            ibufr, "#2#timeSignificance", 30
+        )  # choosing time significance of occurrence for the observations
+        codes_set(
+            ibufr,
+            "#3#timePeriod",
+            (self.df.index[-1] - self.df.index[0]).seconds / 60,
         )
-        codes_set_missing(ibufr, "#1#durationAndTimeOfCurrentMeasurement")
-        codes_set_missing(ibufr, "#1#seaSurfaceCurrentDirection")
-        codes_set_missing(ibufr, "#1#speedOfSeaSurfaceCurrent")
+
+        # ##Surface Salinity
+        # #Commenting as apparently eccodes should mark these as missing immediately
+        # codes_set(ibufr, "#1#methodOfSalinityOrDepthMeasurement", 0)
+        # codes_set_missing(ibufr, "#2#depthBelowWaterSurface")
+        # codes_set_missing(ibufr, "#1#salinity")
+        # ##Surface Current
+        # codes_set_missing(ibufr, "#1#methodOfSeaOrWaterCurrentMeasurement")
+        # codes_set_missing(
+        #     ibufr, "#1#methodOfRemovingVelocityAndMotionOfPlatformFromCurrent"
+        # )
+        # codes_set_missing(ibufr, "#1#durationAndTimeOfCurrentMeasurement")
+        # codes_set_missing(ibufr, "#1#seaSurfaceCurrentDirection")
+        # codes_set_missing(ibufr, "#1#speedOfSeaSurfaceCurrent")
         ## Profile Measurements ##
         ##########################
         ##Temperature and salinity profile
-        codes_set_missing(
-            ibufr, "#2#instrumentTypeForWaterTemperatureOrSalinityProfileMeasurement"
-        )
-        codes_set_missing(
-            ibufr,
-            "#2#instrumentSerialNumberForWaterTemperatureProfile",
-        )
+        # codes_set(
+        #     ibufr, "#2#instrumentTypeForWaterTemperatureOrSalinityProfileMeasurement",
+        # )
+        # codes_set_missing(
+        #     ibufr,
+        #     "#2#instrumentSerialNumberForWaterTemperatureProfile",
+        # )
         codes_set(ibufr, "#2#methodOfWaterTemperatureAndOrOrSalinityMeasurement", 14)
         codes_set(
             ibufr,
-            "#3#instrumentTypeForWaterTemperatureOrSalinityProfileMeasurement",
+            "#2#instrumentTypeForWaterTemperatureOrSalinityProfileMeasurement",
             902,
         )
         codes_set(ibufr, "#1#waterTemperatureProfileRecorderTypes", 99)
         codes_set(
             ibufr,
-            "#3#instrumentSerialNumberForWaterTemperatureProfile",
+            "#2#instrumentSerialNumberForWaterTemperatureProfile",
             self.ds.moana_serial_number,
         )
-        codes_set(ibufr, "#2#methodOfSalinityOrDepthMeasurement", 1)
+        codes_set(ibufr, "#1#methodOfSalinityOrDepthMeasurement", 0)
         codes_set(ibufr, "#1#indicatorForDigitization", 0)
         if self.upcast:
             codes_set(ibufr, "#1#directionOfProfile", 0)  # Code-Table 0-> upward
@@ -365,6 +392,12 @@ class GTS_encode_ship:
                 ibufr, "#1#directionOfProfile", 3
             )  # Code-Table 3 -> missing value
         codes_set(ibufr, "#1#methodOfDepthCalculation", 1)
+        codes_set(
+            ibufr,
+            "#3#instrumentSerialNumberForWaterTemperatureProfile",
+            self.ds.moana_serial_number,
+        )
+        codes_set(ibufr, "#2#methodOfSalinityOrDepthMeasurement", 0)
         ### This bit includes the quality flags and data for each measurement
         ## Quality flags must be cycled every four, as the four variables need an associated QF
         for count, i in enumerate(range(0, len(self.df) * 4, 4)):
@@ -381,65 +414,82 @@ class GTS_encode_ship:
             temp_key = "#" + str(count + 2) + "#oceanographicWaterTemperature"
             salt_key = "#" + str(count + 2) + "#salinity"
             codes_set(ibufr, depth_key, self.depths[count])
-            codes_set(ibufr, key1, 13)  # Depth Quality Flags
-            codes_set(ibufr, key1G, 9)  # Depth Quality Flags
+            codes_set(ibufr, key1, 10)
+            codes_set(ibufr, key1G, 9)  # Pressure Quality Flags
             codes_set(ibufr, pressure_key, self.pressures[count])
-            codes_set(ibufr, key2, 10)  # Pressure Quality Flags
-            codes_set(ibufr, key2G, 9)  # Pressure Quality Flags
+
+            # codes_set(
+            #     ibufr, key2, 10
+            # )  # Pressure Quality Flags 10 is water pressure at level
+            # codes_set(ibufr, key2G, 9)  # Pressure Quality Flags
+            # codes_set(ibufr, pressure_key, self.pressures[count])
+            codes_set(
+                ibufr, key2, 11
+            )  # Temperature Quality Flags 11 is water temperature at level
+            codes_set(ibufr, key2G, 9)  # Temperature Quality Flags
             codes_set(ibufr, temp_key, self.temperatures[count])
-            codes_set(ibufr, key3, 11)  # Temperature Quality Flags
-            codes_set(ibufr, key3G, 9)  # Temperature Quality Flags
+            # codes_set(ibufr, key3, 63)  # Salinity Quality Flags/Missing data
+            # codes_set(ibufr, key3G, 15)
             codes_set_missing(ibufr, salt_key)
-            codes_set(ibufr, key4, 63)  # Salinity Quality Flags/Missing data
-            codes_set(ibufr, key4G, 15)  # Salinity Quality Flags/Missing data
+            codes_set(ibufr, key4, 13)  # Depth Quality Flags 13 is water depth at level
+            codes_set(ibufr, key4G, 9)  # Depth Quality Flags
+        # Salinity Quality Flags/Missing data
         ### This bit includes the quality flags for each measurement
         ## There's three because there is a quality flag for depth, for temperature and for salinity
         ##Current profile
         # As no data is provided everything is set to missing
-        codes_set_missing(ibufr, "#2#indicatorForDigitization")
-        codes_set_missing(ibufr, "#2#methodOfSeaOrWaterCurrentMeasurement")
-        codes_set_missing(
-            ibufr, "#2#methodOfRemovingVelocityAndMotionOfPlatformFromCurrent"
-        )
-        codes_set_missing(ibufr, "#2#durationAndTimeOfCurrentMeasurement")
-        codes_set_missing(ibufr, "#2#directionOfProfile")  # Code-Table 0-> upward
-        codes_set_missing(ibufr, "#2#methodOfDepthCalculation")
-        codes_set_missing(ibufr, "#" + str(count + 4) + "#depthBelowWaterSurface")
-        codes_set_missing(ibufr, "#" + str(count + 2) + "#waterPressure")
-        codes_set_missing(ibufr, "#2#waterPressure")
-        codes_set_missing(ibufr, "#1#speedOfCurrent")
-        codes_set_missing(ibufr, "#1#CurrentDirection")
-        ##Dissolved oxygen data
-        # As no data is provided everything is set to missing
-        codes_set_missing(ibufr, "#3#indicatorForDigitization")
-        codes_set_missing(ibufr, "#3#methodOfDepthCalculation")
-        codes_set_missing(ibufr, "#" + str(count + 5) + "#depthBelowWaterSurface")
-        codes_set_missing(ibufr, "#" + str(count + 3) + "#waterPressure")
-        codes_set_missing(
-            ibufr, "#1#instrumentTypeOrSensorForDissolvedOxygenMeasurement"
-        )
-        codes_set_missing(ibufr, "#1#oceanographicDissolvedOxygen")
+        # codes_set_missing(ibufr, "#2#indicatorForDigitization")
+        # codes_set_missing(ibufr, "#2#methodOfSeaOrWaterCurrentMeasurement")
+        # codes_set_missing(
+        #     ibufr, "#2#methodOfRemovingVelocityAndMotionOfPlatformFromCurrent"
+        # )
+        # codes_set_missing(ibufr, "#2#durationAndTimeOfCurrentMeasurement")
+        # codes_set_missing(ibufr, "#2#directionOfProfile")  # Code-Table 0-> upward
+        # codes_set_missing(ibufr, "#2#methodOfDepthCalculation")
+        # codes_set_missing(ibufr, "#" + str(count + 4) + "#depthBelowWaterSurface")
+        # codes_set_missing(ibufr, "#" + str(count + 2) + "#waterPressure")
+        # codes_set_missing(ibufr, "#2#waterPressure")
+        # codes_set_missing(ibufr, "#1#speedOfCurrent")
+        # codes_set_missing(ibufr, "#1#CurrentDirection")
+        # ##Dissolved oxygen data
+        # # As no data is provided everything is set to missing
+        # codes_set_missing(ibufr, "#3#indicatorForDigitization")
+        # codes_set_missing(ibufr, "#3#methodOfDepthCalculation")
+        # codes_set_missing(ibufr, "#" + str(count + 5) + "#depthBelowWaterSurface")
+        # codes_set_missing(ibufr, "#" + str(count + 3) + "#waterPressure")
+        # codes_set_missing(
+        #     ibufr, "#1#instrumentTypeOrSensorForDissolvedOxygenMeasurement"
+        # )
+        # codes_set_missing(ibufr, "#1#oceanographicDissolvedOxygen")
         # Encode the keys back in the data section #
         ############################################
         codes_set(ibufr, "pack", 1)
         # Create output file #
         ######################
-        self.identifier = generate_identifier(str(self.days[-1]).zfill(2), str(self.hours[-1]).zfill(2), str(self.minutes[-1]).zfill(2))
-        self.output_filename = os.path.join(self.outdir, ".".join([self.identifier.replace(" ","_"), "bufr"]))
+        self.identifier = generate_identifier(
+            str(self.days[-1]).zfill(2),
+            str(self.hours[-1]).zfill(2),
+            str(self.minutes[-1]).zfill(2),
+        )
+
+        filename = f"A_{self.identifier.replace(' ', '')}_C_NZKL_{self.years[-1]}{int(self.months[-1]):02d}{int(self.days[-1]):02d}{int(self.hours[-1]):02d}{int(self.minutes[-1]):02d}{int(self.seconds[-1]):02d}.bufr"
+
+        self.output_filename = os.path.join(self.outdir, filename)
+
         while os.path.exists(self.output_filename):
             self.output_filename = increment_identifier_number(self.output_filename)
         with open(self.output_filename, "w") as f:
-            f.write("001"+os.linesep+self.identifier+os.linesep)
+            f.write("001" + os.linesep + self.identifier + os.linesep)
 
         output_filename = open(self.output_filename, "ab")
-        
+
         # Write encoded data into a file and close
         codes_write(ibufr, output_filename)
         print("Created output BUFR file ", output_filename)
         codes_release(ibufr)
         output_filename.close()
         return self.output_filename
-                  
+
     def run(self):
         """
         Runs the GTS_encode process.

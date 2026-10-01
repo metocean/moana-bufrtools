@@ -306,3 +306,14 @@ The Moana TD (Mangōpare) sensor and deck unit hardware were developed by Zebra-
 A fishing vessel, in-situ ocean observing quality control working group is in development through FVON (https://fvon.org/).  Please contact either the Moana Project (info@moanaproject.org) or FVON (through their website) for more information.
 
 ---
+## Updated information September 2026
+
+Main things that changed: 
+- Different header 
+- Update of eccodes python library
+- Change in the structure of the encoding
+- Addition of more WIGOS IDs and extending the output file name to the WMO extended name recommendation.
+ 
+The links for most of the data and manuals provided has changed. Links are provided below for reference:
+-[Header Abbreviation changes](https://community.wmo.int/site/knowledge-hub/programmes-and-initiatives/operational-information-service-ois/volume-c1-catalogue-of-meteorological-bulletins)
+- [2024 manual here](https://library.wmo.int/records/item/55696-guide-to-the-wmo-integrated-global-observing-system?language_id=13&back=&offset=) 
